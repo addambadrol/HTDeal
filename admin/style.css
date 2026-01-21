@@ -1,0 +1,200 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 0;
+}
+
+
+
+/* Reset & Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    background-color: #6f4fdf;
+    padding: 10px 20px; /* Nipiskan navbar */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Logo kiri, ikon kanan */
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.logo {
+    flex: 0 1 auto;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.profile-icon {
+    flex: 0 1 auto;
+    margin-left: 15px;
+}
+
+.profile-image {
+    width: 25px;
+    height: 25px;
+}
+
+/* Promo Banner */
+.promo-banner {
+    display: center;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.promo-text h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.promo-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Produk */
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    width: 15%;
+    height: auto;
+}
+
+.product-details {
+    margin-left: 20px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-size: 18px;
+}
+
+.new-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
+.build-now-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #6f4fdf;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.build-now-button:hover {
+    background-color: #5a3bbf;
+}
+
+/* Brands */
+.brands {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.brands h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.brand-logos img {
+    margin: 0 15px;
+    width: 100px;
+    height: auto;
+}
+
+/* Services */
+.services {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.services h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.services-list a {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    background-color: #6f4fdf;
+    padding: 15px 30px;
+    border-radius: 5px;
+}
+
+.services-list a:hover {
+    background-color: #5a3bbf;
+}
+
+.login-btn:hover {
+    background-color: #4a20b3;
+}
+.create-account {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #bbbbbb;
+    user-select: none;
+}
+.extra-links p {
+    font-size: 12px;
+    text-align: center;
+    margin: 5px 0;
+    color: #bbbbbb;
+}
+.extra-links a {
+    color: #632ee6;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.extra-links a:hover {
+    text-decoration: underline;
+}
