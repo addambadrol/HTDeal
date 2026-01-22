@@ -32,9 +32,10 @@ $allCategories = [
     'CPU' => '',
     'GPU' => '',
     'Cooler' => '',
-    'Ram' => '',
+    'RAM' => '',
     'Storage' => '',
-    'Power Supply' => ''
+    'Power Supply' => '',
+    'Motherboard' => ''
 ];
 
 // Merge database categories with all categories
