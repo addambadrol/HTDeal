@@ -336,8 +336,6 @@ session_start();
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 HTDeal - SISTEM TEMU JANJI DAN PENGURUSAN JUAL BELI KOMPUTER HA-KAL TECH</p>
-    </footer>
+    <?php include 'header.php'; ?>
 </body>
 </html>
