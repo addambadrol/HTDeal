@@ -224,7 +224,7 @@ require_once '../db_config.php';
   .contact-item {
     margin-bottom: 20px;
     padding-left: 15px;
-    border-left: 3px solid rgba(157,123,255,0.3);
+    /* border-left: 3px solid rgba(157,123,255,0.3); */
     transition: all 0.3s;
   }
 
