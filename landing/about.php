@@ -388,7 +388,6 @@
 
 <body onload="initMap()">
 <?php include 'header.php'; ?>
-<?php include 'header.php'; ?>
 
 <section class="hero-section">
   <div class="hero-content">
