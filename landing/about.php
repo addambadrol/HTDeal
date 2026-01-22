@@ -38,15 +38,14 @@
 }
 
 .navbar {
-    display: flex !important;
-            align-items: center !important;
-            justify-content: space-around !important;
-            max-width: 1200px !important;
-            margin: 0 auto !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* Untuk spread logo & profile */
+    width: 100%;
 }
 
 .logo img {
-    height: 40px !important;
+    flex: 0 0 auto;
 }
 
 .nav-links {
@@ -57,30 +56,58 @@
 }
 
 .nav-links a {
-    color: #fff !important;
-            text-decoration: none !important;
-            font-weight: 600 !important;
-            font-size: 15px !important;
-            transition: color 0.3s !important;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-            color: #ccc !important;
-        }
+    color: #ccc;
+}
 
 .profile-icon {
-    height: 40px !important;
+    flex: 0 0 auto;
 }
 
 .profile-icon img {
-            width: 40px !important;
-            height: 40px !important;
-            cursor: pointer !important;
-        }
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 25px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
 
 .profile-icon img:hover {
     border-color: #fff;
     transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
 }
 
   /* Animated gradient background */
