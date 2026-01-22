@@ -435,10 +435,10 @@ require_once '../db_config.php';
     <div class="card-content">
       <h2>Contact Us</h2>
       <div class="contact-item">
-        <p>Email: <a href="mailto:htdeal@gmail.com">htdeal@gmail.com</a></p>
+        <p>Email: <a href="mailto:htdeal@gmail.com">heykalmykal90@gmail.com</a></p>
       </div>
       <div class="contact-item">
-        <p>WhatsApp: <a href="https://wa.me/60192501153">+019-250 1153</a></p>
+        <p>WhatsApp: <a href="https://wa.me/60192501153">+60 19-250 1153</a></p>
       </div>
       <div class="contact-item">
         <p>Instagram: <a href="https://instagram.com/htdeal.my">@htdeal.my</a></p>
