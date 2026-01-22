@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $error = "Database error: " . $e->getMessage();
         }
     }
-}
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HTDeal - Sign Up</title>
+<link rel="stylesheet" href="./style.css" />
 <style>
   body {
     background-color: #0a0a0a;
