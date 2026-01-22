@@ -62,9 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <title>HTDeal - Sign Up</title>
 <link rel="stylesheet" href="./style.css" />
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
   body {
     background-color: #0a0a0a;
-    /* font-family: Arial, sans-serif; */
+    font-family: Arial, sans-serif;
     color: #fff;
     display: flex;
     flex-direction: column;
