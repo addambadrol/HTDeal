@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HTDeal - About Us</title>
-  <link rel="stylesheet" href="./style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUGI9VjTTo0-5c8hUZMzGcrQfSoN41Yu4&sensor=false"></script>
 
@@ -128,14 +127,14 @@
     animation: fadeInUp 1s ease 0.3s backwards;
   }
 
-  /* CONTENT CARDS */
+  /* CONTENT CARDS - SIDE BY SIDE */
   .cards-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 100px 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 50px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
   }
 
   .card {
@@ -146,6 +145,8 @@
     position: relative;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    display: flex;
+    flex-direction: column;
   }
 
   .card::before {
@@ -172,7 +173,7 @@
 
   .card-image {
     width: 100%;
-    height: 350px;
+    height: 320px;
     overflow: hidden;
     position: relative;
   }
@@ -189,11 +190,12 @@
   }
 
   .card-content {
-    padding: 50px 45px;
+    padding: 45px 40px;
+    flex: 1;
   }
 
   .card-content h2 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 800;
     margin-bottom: 25px;
     background: linear-gradient(135deg, #9d7bff, #6e22dd);
@@ -202,20 +204,67 @@
   }
 
   .card-content p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 2;
     color: #d0d0d0;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
   }
 
   .card-content p:last-child {
     margin-bottom: 0;
   }
 
+  /* Contact card specific styles */
+  .contact-item {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid rgba(157,123,255,0.3);
+    transition: all 0.3s;
+  }
+
+  .contact-item:hover {
+    border-left-color: #9d7bff;
+    padding-left: 25px;
+  }
+
+  .contact-item p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #d8d8d8;
+    margin-bottom: 0;
+  }
+
+  .contact-item a {
+    color: #9d7bff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .contact-item a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #9d7bff;
+    transition: width 0.3s;
+  }
+
+  .contact-item a:hover {
+    color: #b89aff;
+  }
+
+  .contact-item a:hover::after {
+    width: 100%;
+  }
+
   /* MAP SECTION */
   .map-wrapper {
     max-width: 1400px;
-    margin: 120px auto;
+    margin: 0 auto 150px;
     padding: 0 25px;
   }
 
@@ -226,7 +275,7 @@
     overflow: hidden;
     box-shadow: 0 30px 80px rgba(0,0,0,.4);
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.5fr;
   }
 
   .map-info {
@@ -262,92 +311,6 @@
     filter: grayscale(0.3) contrast(1.15) brightness(0.9);
   }
 
-  /* CONTACT SECTION */
-  .contact-wrapper {
-    max-width: 1400px;
-    margin: 120px auto 150px;
-    padding: 0 25px;
-  }
-
-  .contact-container {
-    background: rgba(255,255,255,0.03);
-    border-radius: 30px;
-    border: 1px solid rgba(157,123,255,0.2);
-    overflow: hidden;
-    box-shadow: 0 30px 80px rgba(0,0,0,.4);
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-  }
-
-  .contact-info {
-    padding: 80px 70px;
-  }
-
-  .contact-info h2 {
-    font-size: 42px;
-    font-weight: 800;
-    margin-bottom: 50px;
-    background: linear-gradient(135deg, #9d7bff, #6e22dd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .contact-item {
-    margin-bottom: 30px;
-    padding-left: 15px;
-    border-left: 3px solid rgba(157,123,255,0.3);
-    transition: all 0.3s;
-  }
-
-  .contact-item:hover {
-    border-left-color: #9d7bff;
-    padding-left: 25px;
-  }
-
-  .contact-item p {
-    font-size: 18px;
-    line-height: 2;
-    color: #d8d8d8;
-  }
-
-  .contact-item a {
-    color: #9d7bff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s;
-    position: relative;
-  }
-
-  .contact-item a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #9d7bff;
-    transition: width 0.3s;
-  }
-
-  .contact-item a:hover {
-    color: #b89aff;
-  }
-
-  .contact-item a:hover::after {
-    width: 100%;
-  }
-
-  .contact-image {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .cards-container {
@@ -355,8 +318,7 @@
       gap: 40px;
     }
 
-    .map-container,
-    .contact-container {
+    .map-container {
       grid-template-columns: 1fr;
     }
 
@@ -376,19 +338,16 @@
     }
 
     .card-content,
-    .map-info,
-    .contact-info {
+    .map-info {
       padding: 50px 35px;
     }
 
     .card-content h2,
-    .map-info h2,
-    .contact-info h2 {
-      font-size: 32px;
+    .map-info h2 {
+      font-size: 28px;
     }
 
     .cards-container {
-      grid-template-columns: 1fr;
       padding: 60px 25px;
     }
   }
@@ -455,7 +414,8 @@
 </head>
 
 <body onload="initMap()">
-<?php include 'header.php'; ?> 
+<?php include 'header.php'; ?>
+
 <section class="hero-section">
   <div class="hero-content">
     <h1>About Us</h1>
@@ -467,6 +427,7 @@
 </section>
 
 <div class="cards-container">
+  <!-- Build & Services Card -->
   <div class="card">
     <div class="card-image">
       <img src="../picture/aboutpic1.jpeg" alt="Build & Services">
@@ -477,23 +438,13 @@
       <p>Professional repair & warranty support to keep your system optimal.</p>
     </div>
   </div>
-</div>
 
-<div class="map-wrapper">
-  <div class="map-container">
-    <div class="map-info">
-      <h2>Our Base</h2>
-      <p>Apartment Suria, Jalan PJU 10/4A, Petaling Jaya, Selangor</p>
+  <!-- Contact Us Card -->
+  <div class="card">
+    <div class="card-image">
+      <img src="../picture/aboutpic2.jpeg" alt="Contact">
     </div>
-    <div class="map-display">
-      <div id="map_canvas"></div>
-    </div>
-  </div>
-</div>
-
-<div class="contact-wrapper">
-  <div class="contact-container">
-    <div class="contact-info">
+    <div class="card-content">
       <h2>Contact Us</h2>
       <div class="contact-item">
         <p>Email: <a href="mailto:htdeal@gmail.com">htdeal@gmail.com</a></p>
@@ -508,8 +459,17 @@
         <p>Operation Hours: Monday – Friday (9AM – 5PM)</p>
       </div>
     </div>
-    <div class="contact-image">
-      <img src="../picture/aboutpic2.jpeg" alt="Contact">
+  </div>
+</div>
+
+<div class="map-wrapper">
+  <div class="map-container">
+    <div class="map-info">
+      <h2>Our Base</h2>
+      <p>Apartment Suria, Jalan PJU 10/4A, Petaling Jaya, Selangor</p>
+    </div>
+    <div class="map-display">
+      <div id="map_canvas"></div>
     </div>
   </div>
 </div>
