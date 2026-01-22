@@ -248,7 +248,7 @@ require_once '../db_config.php';
     position: relative;
   }
 
-  .contact-item a::after {
+  /* .contact-item a::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -265,7 +265,7 @@ require_once '../db_config.php';
 
   .contact-item a:hover::after {
     width: 100%;
-  }
+  } */
 
   /* MAP SECTION */
   .map-wrapper {
