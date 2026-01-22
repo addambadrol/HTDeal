@@ -445,7 +445,7 @@ if ($warranty_id > 0) {
   .skip-reference button {
     background: transparent;
     border: none;
-    color: #888;
+    color: white;
     font-size: 14px;
     cursor: pointer;
     text-decoration: underline;
