@@ -316,6 +316,16 @@ require_once '../db_config.php';
     height: 100%;
   }
 
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: #0a0a0a;
+    font-size: 12px;
+    color: #666;
+    margin-top: auto;
+    border-top: 1px solid rgba(110, 34, 221, 0.2);
+  }
+
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .cards-container {
