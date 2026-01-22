@@ -360,6 +360,7 @@ require_once '../db_config.php';
     .card-content h2,
     .map-info h2 {
       font-size: 28px;
+      text-align : center;
     }
 
     .cards-container {
