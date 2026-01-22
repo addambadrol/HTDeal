@@ -794,7 +794,7 @@ if ($warranty_id > 0) {
     `;
   }
 
-  let isReferenceSkipped = false;
+  // let isReferenceSkipped = false;
 
 function toggleSkipReference() {
   const input = document.getElementById('referenceCodeInput');
@@ -931,72 +931,73 @@ function toggleSkipReference() {
   }
 
   function confirmAppointment() {
-    if (selectedDate !== null && selectedTime !== null) {
-        const date = dates[selectedDate];
-        const time = times[selectedTime].value;
-        formData.append('appointment_time', time);
+  if (selectedDate !== null && selectedTime !== null) {
+
+    const confirmBtn = document.getElementById('confirmBtn');
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = 'Processing...';
+
+    const formData = new FormData();
+
+    const date = dates[selectedDate];
+    const time = times[selectedTime].value;
+
+    formData.append('appointment_date', date.fullDate);
+    formData.append('appointment_time', time);
+
+    if (IS_WARRANTY) {
+        // Warranty & Repair appointment
+        formData.append('service_type', 'Warranty & Repair');
+        formData.append('warranty_id', WARRANTY_ID);
+    } else {
+        // Regular Build PC or Other Service appointment
+        const buildItems = JSON.parse(sessionStorage.getItem('selectedBuild') || '[]');
         
-        const confirmBtn = document.getElementById('confirmBtn');
-        confirmBtn.disabled = true;
-        confirmBtn.textContent = 'Processing...';
-        
-        const formData = new FormData();
-        formData.append('appointment_date', date.fullDate);
-        formData.append('appointment_time', time);
-        
-        if (IS_WARRANTY) {
-            // Warranty & Repair appointment
-            formData.append('service_type', 'Warranty & Repair');
-            formData.append('warranty_id', WARRANTY_ID);
-        } else {
-            // Regular Build PC or Other Service appointment
-            const buildItems = JSON.parse(sessionStorage.getItem('selectedBuild') || '[]');
-            
-            if (buildItems.length === 0) {
-                alert('No items selected. Please go back and select components.');
-                window.location.href = 'buildpc.php';
-                return;
-            }
-            
-            // Get service type from sessionStorage (set by buildpc.php or other_services.php)
-            const serviceType = sessionStorage.getItem('serviceType') || 'Build PC';
-            formData.append('service_type', serviceType);
-            formData.append('build_items', JSON.stringify(buildItems));
-            
-            // Add reference code data if validated
-            if (validatedReferenceCode && referrerId) {
-                formData.append('reference_code', validatedReferenceCode);
-                formData.append('referrer_id', referrerId);
-            }
+        if (buildItems.length === 0) {
+            alert('No items selected. Please go back and select components.');
+            window.location.href = 'buildpc.php';
+            return;
         }
         
-        fetch('confirm_appointment.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                if (!IS_WARRANTY) {
-                    sessionStorage.removeItem('selectedBuild');
-                    sessionStorage.removeItem('totalPrice');
-                    sessionStorage.removeItem('serviceType');
-                }
-                window.location.href = 'appointment_summary.php?id=' + data.appointment_id;
-            } else {
-                alert('Error: ' + data.message);
-                confirmBtn.disabled = false;
-                confirmBtn.textContent = 'Confirm Appointment';
+        const serviceType = sessionStorage.getItem('serviceType') || 'Build PC';
+        formData.append('service_type', serviceType);
+        formData.append('build_items', JSON.stringify(buildItems));
+        
+        // Add reference code data if validated
+        if (validatedReferenceCode && referrerId) {
+            formData.append('reference_code', validatedReferenceCode);
+            formData.append('referrer_id', referrerId);
+        }
+    }
+    
+    fetch('confirm_appointment.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (!IS_WARRANTY) {
+                sessionStorage.removeItem('selectedBuild');
+                sessionStorage.removeItem('totalPrice');
+                sessionStorage.removeItem('serviceType');
             }
-        })
-        .catch(error => {
-            alert('Error creating appointment. Please try again.');
-            console.error('Error:', error);
+            window.location.href = 'appointment_summary.php?id=' + data.appointment_id;
+        } else {
+            alert('Error: ' + data.message);
             confirmBtn.disabled = false;
             confirmBtn.textContent = 'Confirm Appointment';
-        });
-    }
+        }
+    })
+    .catch(error => {
+        alert('Error creating appointment. Please try again.');
+        console.error('Error:', error);
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = 'Confirm Appointment';
+    });
+  }
 }
+
 
   populateDates();
   populateTimes();
