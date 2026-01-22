@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HTDeal - About Us</title>
-
+  <link rel="stylesheet" href="./style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUGI9VjTTo0-5c8hUZMzGcrQfSoN41Yu4&sensor=false"></script>
 
@@ -34,7 +34,7 @@
 
   /* ================= HERO ================= */
   .hero-section {
-    padding: 140px 25px 120px;
+    padding: 140px 25px 120px !important;
     text-align: center;
   }
 
@@ -58,7 +58,7 @@
 
   /* ================= SECTION BASE ================= */
   section:not(.hero-section) {
-    max-width: 1300px;
+    max-width: 1300px !important;
     margin: 80px auto;
     background: rgba(255,255,255,0.04);
     border-radius: 24px;
@@ -69,7 +69,7 @@
 
   /* ================= CONTENT ================= */
   .content-section {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -101,7 +101,7 @@
 
   /* ================= MAP ================= */
   .map-section {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -135,7 +135,7 @@
 
   /* ================= CONTACT ================= */
   .contact-section {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
   }
 
