@@ -29,7 +29,7 @@ if (isset($_SESSION['reset_message'])) {
     margin: 0;
   }
 
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -45,7 +45,7 @@ if (isset($_SESSION['reset_message'])) {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;  /* Untuk spread logo & profile */
+    justify-content: space-between;  
     width: 100%;
 }
 
@@ -54,7 +54,7 @@ if (isset($_SESSION['reset_message'])) {
 }
 
 .nav-links {
-    flex: 1;  /* Nav links ambil space tengah */
+    flex: 1; 
     display: flex;
     gap: 35px;
     justify-content: center;
@@ -106,7 +106,7 @@ if (isset($_SESSION['reset_message'])) {
 .profile-icon img:hover {
     border-color: #fff;
     transform: scale(1.1);
-}
+} */
   
   /* Main content ambil ruang berbaki */
   main {
