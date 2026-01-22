@@ -13,7 +13,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Poppins', sans-serif;
   }
 
   body {
@@ -44,42 +44,6 @@
 
 .logo img {
     flex: 0 0 auto;
-}
-
-.nav-links {
-    flex: 1;  /* Nav links ambil space tengah */
-    display: flex;
-    gap: 35px;
-    justify-content: center;
-}
-
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 5px 0;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: #ccc;
 }
 
 .profile-icon {
