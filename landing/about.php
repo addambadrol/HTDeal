@@ -193,6 +193,7 @@
   .card-content {
     padding: 45px 40px;
     flex: 1;
+    text-align: left;
   }
 
   .card-content h2 {
