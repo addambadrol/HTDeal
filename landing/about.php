@@ -56,7 +56,7 @@
 .nav-links a {
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 600px;
     font-size: 15px;
     transition: all 0.3s ease;
     position: relative;
