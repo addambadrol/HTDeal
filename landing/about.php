@@ -219,20 +219,21 @@
   .contact-item {
     margin-bottom: 20px;
     padding-left: 15px;
-    border-left: 3px solid rgba(157,123,255,0.3);
+    /* border-left: 3px solid rgba(157,123,255,0.3); */
     transition: all 0.3s;
   }
 
-  .contact-item:hover {
+  /* .contact-item:hover {
     border-left-color: #9d7bff;
     padding-left: 25px;
-  }
+  } */
 
   .contact-item p {
     font-size: 16px;
     line-height: 1.8;
     color: #d8d8d8;
     margin-bottom: 0;
+    padding-left: 15px;
   }
 
   .contact-item a {
@@ -243,7 +244,7 @@
     position: relative;
   }
 
-  .contact-item a::after {
+  /* .contact-item a::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -260,7 +261,7 @@
 
   .contact-item a:hover::after {
     width: 100%;
-  }
+  } */
 
   /* MAP SECTION */
   .map-wrapper {
@@ -420,16 +421,16 @@
     <div class="card-content">
       <h2>Contact Us</h2>
       <div class="contact-item">
-        <p>Email: <a href="mailto:htdeal@gmail.com">htdeal@gmail.com</a></p>
+        <p>Email: <a href="mailto:htdeal@gmail.com">heykalmykal90@gmail.com</a></p>
       </div>
       <div class="contact-item">
-        <p>WhatsApp: <a href="https://wa.me/60192501153">+019-250 1153</a></p>
+        <p>WhatsApp: <a href="https://wa.me/60192501153">+60 19-250 1153</a></p>
       </div>
       <div class="contact-item">
         <p>Instagram: <a href="https://instagram.com/htdeal.my">@htdeal.my</a></p>
       </div>
       <div class="contact-item">
-        <p>Operation Hours: Monday – Friday (9AM – 5PM)</p>
+        <p>Operation Hours:</p> <p>Monday – Friday (9AM – 5PM)</p>
       </div>
     </div>
   </div>
