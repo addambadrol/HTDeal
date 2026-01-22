@@ -191,7 +191,8 @@
   }
 
   .card-content {
-    text-align: left;
+    padding: 45px 40px;
+    flex: 1;
   }
 
   .card-content h2 {
