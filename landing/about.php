@@ -22,7 +22,7 @@
     overflow-x: hidden;
   }
 
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -38,7 +38,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;  /* Untuk spread logo & profile */
+    justify-content: space-between;  
     width: 100%;
 }
 
@@ -65,12 +65,11 @@
     transform: scale(1.1);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
     }
-}
+} */
 
   /* Animated gradient background */
   body::before {
