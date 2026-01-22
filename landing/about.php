@@ -218,7 +218,7 @@
   /* Contact card specific styles */
   .contact-item {
     margin-bottom: 20px;
-    padding-left: 15px;
+    padding-left: 0;
     /* border-left: 3px solid rgba(157,123,255,0.3); */
     transition: all 0.3s;
   }
@@ -233,7 +233,6 @@
     line-height: 1.8;
     color: #d8d8d8;
     margin-bottom: 0;
-    padding-left: 15px;
   }
 
   .contact-item a {
