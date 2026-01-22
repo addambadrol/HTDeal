@@ -22,55 +22,6 @@
     overflow-x: hidden;
   }
 
-  /* header {
-    background-color: #6e22dd;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(110, 34, 221, 0.4);
-    transition: all 0.3s ease;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;  
-    width: 100%;
-}
-
-.logo img {
-    flex: 0 0 auto;
-}
-
-.profile-icon {
-    flex: 0 0 auto;
-}
-
-.profile-icon img {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin-left: 25px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.profile-icon img:hover {
-    border-color: #fff;
-    transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-} */
-
   /* Animated gradient background */
   body::before {
     content: '';
@@ -358,7 +309,6 @@
   #map_canvas {
     width: 100%;
     height: 100%;
-    filter: grayscale(0.3) contrast(1.15) brightness(0.9);
   }
 
   /* RESPONSIVE */
@@ -408,34 +358,7 @@
       const center = { lat: 3.1945, lng: 101.5902 };
       const map = new google.maps.Map(document.getElementById("map_canvas"), {
         zoom: 16,
-        center,
-        styles: [
-          {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": [{"color": "#1a1a2e"}]
-          },
-          {
-            "featureType": "all",
-            "elementType": "labels.text.fill",
-            "stylers": [{"color": "#9d7bff"}]
-          },
-          {
-            "featureType": "all",
-            "elementType": "labels.text.stroke",
-            "stylers": [{"visibility": "off"}]
-          },
-          {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [{"color": "#2a2a3e"}]
-          },
-          {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{"color": "#16162a"}]
-          }
-        ]
+        center
       });
       new google.maps.Marker({ 
         position: center, 
@@ -464,6 +387,7 @@
 </head>
 
 <body onload="initMap()">
+<?php include 'header.php'; ?>
 <?php include 'header.php'; ?>
 
 <section class="hero-section">
@@ -523,6 +447,7 @@
     </div>
   </div>
 </div>
-<?php include 'header.php'; ?>
+
+<?php include 'footer.php'; ?>
 </body>
 </html>
