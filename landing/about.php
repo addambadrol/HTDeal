@@ -24,7 +24,7 @@
     margin: 0;
   }
 
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -50,7 +50,7 @@
 }
 
 .nav-links {
-    flex: 1;  /* Nav links ambil space tengah */
+    flex: 1;  
     display: flex;
     gap: 35px;
     justify-content: center;
@@ -81,7 +81,7 @@
 .profile-icon img:hover {
     border-color: #fff;
     transform: scale(1.1);
-}
+} */
 
   /* Animated gradient background */
   body::before {
