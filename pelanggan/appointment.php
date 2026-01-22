@@ -643,8 +643,9 @@ if ($warranty_id > 0) {
           <div id="referenceResult" class="reference-result"></div>
 
           <div class="skip-reference">
-            <button onclick="skipReferenceCode()">Skip - Continue without reference code</button>
+              <button id="skipBtn" onclick="toggleSkipReference()">Skip - Continue without reference code</button>
           </div>
+
         </div>
       </div>
       <?php endif; ?>
@@ -752,14 +753,18 @@ if ($warranty_id > 0) {
       validateBtn.textContent = 'Validate Code';
       
       if (data.success) {
-        validatedReferenceCode = code;
-        referrerId = data.referrer_id;
-        isReferenceSkipped = false;
-        showReferenceResult('success', '✓ Valid Code!', 'Referrer: ' + data.referrer_name);
-        input.disabled = true;
-        validateBtn.style.display = 'none';
-        updateSelectionDisplay();
-      } else {
+  validatedReferenceCode = code;
+  referrerId = data.referrer_id;
+  isReferenceSkipped = false;
+
+  document.getElementById('skipBtn').textContent = 'Skip - Continue without reference code';
+
+  showReferenceResult('success', '✓ Valid Code!', 'Referrer: ' + data.referrer_name);
+  input.disabled = true;
+  validateBtn.style.display = 'none';
+  updateSelectionDisplay();
+}
+ else {
         validatedReferenceCode = null;
         referrerId = null;
         showReferenceResult('error', '❌ Invalid Code', data.message);
@@ -789,22 +794,49 @@ if ($warranty_id > 0) {
     `;
   }
 
-  function skipReferenceCode() {
+  let isReferenceSkipped = false;
+
+function toggleSkipReference() {
+  const input = document.getElementById('referenceCodeInput');
+  const resultDiv = document.getElementById('referenceResult');
+  const validateBtn = document.querySelector('.validate-btn');
+  const skipBtn = document.getElementById('skipBtn');
+
+  // ====== JIKA BELUM SKIP → SKIP ======
+  if (!isReferenceSkipped) {
     validatedReferenceCode = null;
     referrerId = null;
     isReferenceSkipped = true;
-    
-    const input = document.getElementById('referenceCodeInput');
-    const resultDiv = document.getElementById('referenceResult');
-    const validateBtn = document.querySelector('.validate-btn');
-    
+
+    input.value = '';
     input.disabled = true;
     validateBtn.disabled = true;
-    
+
     showReferenceResult('success', '✓ Skipped', 'Continuing without reference code');
-    
-    updateSelectionDisplay();
+
+    skipBtn.textContent = 'Undo Skip (Use reference code)';
+
+  } 
+  // ====== JIKA DAH SKIP → UNDO ======
+  else {
+    isReferenceSkipped = false;
+
+    validatedReferenceCode = null;
+    referrerId = null;
+
+    input.disabled = false;
+    validateBtn.disabled = false;
+
+    resultDiv.style.display = 'none';
+    resultDiv.innerHTML = '';
+    resultDiv.className = 'reference-result';
+
+    skipBtn.textContent = 'Skip - Continue without reference code';
   }
+
+  updateSelectionDisplay();
+}
+
 
   function updateSelectionDisplay() {
     const infoBox = document.getElementById('selectionInfo');
