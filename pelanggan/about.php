@@ -228,10 +228,10 @@ require_once '../db_config.php';
     transition: all 0.3s;
   }
 
-  .contact-item:hover {
+  /* .contact-item:hover {
     border-left-color: #9d7bff;
     padding-left: 25px;
-  }
+  } */
 
   .contact-item p {
     font-size: 16px;
