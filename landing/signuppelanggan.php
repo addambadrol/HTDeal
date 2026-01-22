@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <style>
   body {
     background-color: #0a0a0a;
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
     color: #fff;
     display: flex;
     flex-direction: column;
