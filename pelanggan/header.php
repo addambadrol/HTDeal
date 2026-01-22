@@ -1,6 +1,10 @@
 <?php
-// header.php - Reusable header component for customer pages
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once '../db_config.php';
 ?>
+
 <style>
 /* Header Styles */
 header {
