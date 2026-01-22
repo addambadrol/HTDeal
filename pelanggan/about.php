@@ -444,7 +444,7 @@ require_once '../db_config.php';
         <p>Instagram: <a href="https://instagram.com/htdeal.my">@htdeal.my</a></p>
       </div>
       <div class="contact-item">
-        <p>Operation Hours: Monday – Friday (9AM – 5PM)</p>
+        <p>Operation Hours:</p> <p>Monday – Friday (9AM – 5PM)</p>
       </div>
     </div>
   </div>
