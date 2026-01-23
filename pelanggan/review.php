@@ -43,54 +43,11 @@ try {
     flex-direction: column;
   }
 
-  header {
-    background-color: #6e22dd;
-    padding: 10px 20px;
-  }
-
-  .navbar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .logo img {
-    height: 35px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 25px;
-    margin-left: auto;
-  }
-
-  .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover {
-    color: #ccc;
-  }
-
-  .profile-icon img {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-
   .page-header {
     text-align: center;
-    padding: 50px 20px 100px;
+    padding: 60px 20px 40px;
     background: linear-gradient(180deg, rgba(110, 34, 221, 0.2) 0%, transparent 100%);
     position: relative;
-    overflow: hidden;
   }
 
   .page-title {
@@ -109,157 +66,95 @@ try {
     font-size: 18px;
     color: #bbb;
     font-weight: 400;
-  }
-
-  .section-container {
-    max-width: 1200px;
-    margin: 30px auto 60px;
-    padding: 0 20px;
-  }
-
-  .review-section {
-    background: linear-gradient(145deg, #1a1a2e 0%, #16162a 100%);
-    border: 2px solid #6e22dd;
-    border-radius: 20px;
-    padding: 40px 30px;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 32px rgba(110, 34, 221, 0.3);
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid rgba(110, 34, 221, 0.3);
   }
 
-  .section-title {
-    font-size: 24px;
-    font-weight: 800;
+  .add-review-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #6e22dd 0%, #8b4dff 100%);
     color: #fff;
+    padding: 15px 35px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 25px rgba(110, 34, 221, 0.4);
     text-transform: uppercase;
     letter-spacing: 1px;
   }
 
-  .add-review-btn {
-    background: linear-gradient(135deg, #6e22dd 0%, #8b4dff 100%);
-    color: #fff;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-    font-size: 28px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(110, 34, 221, 0.4);
-  }
-
   .add-review-btn:hover {
     background: linear-gradient(135deg, #5a1bb8 0%, #7a3ee6 100%);
-    transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 6px 20px rgba(110, 34, 221, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(110, 34, 221, 0.6);
   }
 
-  .carousel-container {
-    position: relative;
-    overflow: hidden;
-    padding: 0 60px;
-  }
-
-  .carousel-wrapper {
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    padding: 10px 0;
-    scroll-snap-type: x mandatory;
-  }
-
-  .carousel-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-
-  .arrow-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(110, 34, 221, 0.9);
-    border: none;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  .add-review-btn::before {
+    content: '+';
     font-size: 24px;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(110, 34, 221, 0.4);
+    font-weight: 700;
   }
 
-  .arrow-btn:hover {
-    background: #6e22dd;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(110, 34, 221, 0.6);
+  .reviews-container {
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 0 40px;
   }
 
-  .arrow-btn.left {
-    left: 0;
-  }
-
-  .arrow-btn.right {
-    right: 0;
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
   }
 
   .review-card {
-    min-width: 280px;
-    max-width: 280px;
     background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
     border: 2px solid #333;
     border-radius: 15px;
-    padding: 20px;
+    padding: 0;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    scroll-snap-align: start;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .review-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     border-color: #6e22dd;
-    box-shadow: 0 8px 25px rgba(110, 34, 221, 0.4);
+    box-shadow: 0 12px 35px rgba(110, 34, 221, 0.5);
   }
 
   .review-image {
     width: 100%;
-    aspect-ratio: 3 / 4;
-    border-radius: 12px;
+    aspect-ratio: 1;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 2px solid #333;
+    border-bottom: 2px solid #333;
   }
 
   .placeholder-image {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 1;
     background: rgba(110, 34, 221, 0.05);
-    border: 2px dashed rgba(110, 34, 221, 0.3);
-    border-radius: 12px;
+    border-bottom: 2px solid rgba(110, 34, 221, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 60px;
-    margin-bottom: 15px;
+    font-size: 80px;
     color: rgba(110, 34, 221, 0.3);
+  }
+
+  .review-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .rating {
@@ -270,7 +165,7 @@ try {
 
   .star {
     color: #fbbf24;
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .star.empty {
@@ -278,46 +173,45 @@ try {
   }
 
   .reviewer-name {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .review-text {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #aaa;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
   .empty-state {
     text-align: center;
-    padding: 80px 20px;
-    background: rgba(110, 34, 221, 0.05);
-    border: 2px dashed rgba(110, 34, 221, 0.3);
-    border-radius: 15px;
+    padding: 100px 20px;
+    grid-column: 1 / -1;
   }
 
   .empty-state-icon {
-    font-size: 80px;
-    margin-bottom: 20px;
-    opacity: 0.3;
+    font-size: 100px;
+    margin-bottom: 25px;
+    opacity: 0.2;
   }
 
   .empty-state-title {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 700;
     color: #6e22dd;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .empty-state-text {
-    font-size: 14px;
+    font-size: 16px;
     color: #888;
+    margin-bottom: 30px;
   }
 
   footer {
@@ -330,35 +224,41 @@ try {
     border-top: 1px solid rgba(110, 34, 221, 0.2);
   }
 
+  @media (max-width: 1200px) {
+    .reviews-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+  }
+
   @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-
     .page-title {
-      font-size: 28px;
+      font-size: 32px;
     }
 
-    .review-section {
-      padding: 30px 20px;
+    .page-subtitle {
+      font-size: 16px;
     }
 
-    .carousel-container {
-      padding: 0 50px;
+    .reviews-container {
+      padding: 0 20px;
+      margin: 40px auto;
     }
 
-    .arrow-btn {
-      width: 40px;
-      height: 40px;
-      font-size: 20px;
+    .reviews-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
     }
 
-    .arrow-btn.left {
-      left: 5px;
+    .add-review-btn {
+      padding: 12px 28px;
+      font-size: 14px;
     }
+  }
 
-    .arrow-btn.right {
-      right: 5px;
+  @media (max-width: 480px) {
+    .reviews-grid {
+      grid-template-columns: 1fr;
     }
   }
   </style>
@@ -369,103 +269,50 @@ try {
   <div class="page-header">
     <h1 class="page-title">CUSTOMER REVIEWS</h1>
     <p class="page-subtitle">Leave your review to us</p>
+    <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
+      <a href="addreview.php" class="add-review-btn">Add Review</a>
+    <?php endif; ?>
   </div>
 
-  <div class="section-container">
-    <div class="review-section">
-      <div class="section-header">
-        <h2 class="section-title">Your Reviews</h2>
-        <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
-          <a href="addreview.php" class="add-review-btn">+</a>
-        <?php endif; ?>
-      </div>
-
-      <div class="carousel-container">
-        <button class="arrow-btn left" onclick="scrollCarousel('yourReviews', -1)">‹</button>
-        <div class="carousel-wrapper" id="yourReviews">
-          <?php if (empty($customerReviews)): ?>
-            <div class="empty-state" style="width: 100%; min-width: 100%;">
-              <div class="empty-state-icon">📝</div>
-              <div class="empty-state-title">No Reviews Yet</div>
-              <p class="empty-state-text">Be the first to share your experience with us!</p>
-            </div>
-          <?php else: ?>
-            <?php foreach ($customerReviews as $review): ?>
-              <div class="review-card">
-                <?php if (!empty($review['review_image'])): ?>
-                  <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review" class="review-image" />
-                <?php else: ?>
-                  <div class="placeholder-image">📷</div>
-                <?php endif; ?>
-
-                <div class="rating">
-                  <?php for ($i = 1; $i <= 5; $i++): ?>
-                    <span class="star <?php echo $i <= $review['rating'] ? '' : 'empty'; ?>">★</span>
-                  <?php endfor; ?>
-                </div>
-
-                <div class="reviewer-name">
-                  <?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?>
-                </div>
-
-                <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
-              </div>
-            <?php endforeach; ?>
+  <div class="reviews-container">
+    <div class="reviews-grid">
+      <?php if (empty($customerReviews)): ?>
+        <div class="empty-state">
+          <div class="empty-state-icon">📝</div>
+          <div class="empty-state-title">No Reviews Yet</div>
+          <p class="empty-state-text">Be the first to share your experience with us!</p>
+          <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
+            <a href="addreview.php" class="add-review-btn">Write First Review</a>
           <?php endif; ?>
         </div>
-        <button class="arrow-btn right" onclick="scrollCarousel('yourReviews', 1)">›</button>
-      </div>
+      <?php else: ?>
+        <?php foreach ($customerReviews as $review): ?>
+          <div class="review-card">
+            <?php if (!empty($review['review_image'])): ?>
+              <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review" class="review-image" />
+            <?php else: ?>
+              <div class="placeholder-image">📷</div>
+            <?php endif; ?>
+
+            <div class="review-content">
+              <div class="rating">
+                <?php for ($i = 1; $i <= 5; $i++): ?>
+                  <span class="star <?php echo $i <= $review['rating'] ? '' : 'empty'; ?>">★</span>
+                <?php endfor; ?>
+              </div>
+
+              <div class="reviewer-name">
+                <?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?>
+              </div>
+
+              <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 
   <?php include 'footer.php'; ?>
-
-  <script>
-    function scrollCarousel(id, direction) {
-      const carousel = document.getElementById(id);
-      const cardWidth = 280;
-      const gap = 25;
-      const scrollAmount = (cardWidth + gap) * 3 * direction;
-      
-      carousel.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-
-    // Touch/Swipe support for mobile
-    document.querySelectorAll('.carousel-wrapper').forEach(carousel => {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-
-      carousel.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-        carousel.style.cursor = 'grabbing';
-      });
-
-      carousel.addEventListener('mouseleave', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-      });
-
-      carousel.addEventListener('mouseup', () => {
-        isDown = false;
-        carousel.style.cursor = 'grab';
-      });
-
-      carousel.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeft - walk;
-      });
-
-      carousel.style.cursor = 'grab';
-    });
-  </script>
 </body>
 </html>
