@@ -216,7 +216,9 @@ if ($warranty_id > 0) {
     padding: 10px 5px;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    flex: 1;
+    width: 600px;        
+    max-width: 100%;
+    flex: none;
   }
 
   #dateScroll::-webkit-scrollbar,
@@ -947,7 +949,6 @@ function scrollRight(id) {
     console.log("After Right:", container.scrollLeft);
   }, 300);
 }
-
 
   function confirmAppointment() {
   if (selectedDate !== null && selectedTime !== null) {
