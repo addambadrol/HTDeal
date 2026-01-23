@@ -216,9 +216,8 @@ if ($warranty_id > 0) {
     padding: 10px 5px;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    width: 600px;        
+    flex: 0 0 700px; 
     max-width: 100%;
-    flex: none;
   }
 
   #dateScroll::-webkit-scrollbar,
