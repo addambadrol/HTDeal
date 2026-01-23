@@ -1,4 +1,11 @@
 <?php
+session_start();
+require_once '../db_config.php';
+
+// Check if user is logged in
+$isLoggedIn = isset($_SESSION['account_id']);
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : null;
+
 // Fetch customer reviews
 try {
     $stmt = $pdo->query("
@@ -13,7 +20,6 @@ try {
     $customerReviews = [];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -277,9 +283,11 @@ try {
     <p class="page-subtitle">Leave your review to us</p>
   </div>
 
-  <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
+<?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
     <a href="addreview.php" class="add-review-btn"></a>
-  <?php endif; ?>
+<?php else: ?>
+    <a href="profile.php" class="add-review-btn"></a>
+<?php endif; ?>
 
   <div class="reviews-container">
     <div class="reviews-grid">
@@ -306,14 +314,8 @@ try {
               </div>
 
               <div class="reviewer-name">
-    <?php 
-    if (!empty($review['first_name']) && !empty($review['last_name'])) {
-        echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']);
-    } else {
-        echo 'Anonymous User'; // atau 'Deleted User'
-    }
-    ?>
-</div>
+                <?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?>
+              </div>
 
               <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
             </div>
