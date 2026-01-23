@@ -379,40 +379,10 @@ try {
           <a href="addreview.php" class="add-review-btn">+</a>
         <?php endif; ?>
       </div>
-<!-- <div class="carousel-wrapper" id="yourReviews">
-          <?php if (empty($customerReviews)): ?>
-            <div class="empty-state" style="width: 100%; min-width: 100%;">
-              <div class="empty-state-icon">📝</div>
-              <div class="empty-state-title">No Reviews Yet</div>
-              <p class="empty-state-text">Be the first to share your experience with us!</p>
-            </div>
-          <?php else: ?>
-            <?php foreach ($customerReviews as $review): ?> -->
-              <div class="review-card">
-                <?php if (!empty($review['review_image'])): ?>
-                  <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review" class="review-image" />
-                <?php else: ?>
-                  <div class="placeholder-image">📷</div>
-                <?php endif; ?>
 
-                <div class="rating">
-                  <?php for ($i = 1; $i <= 5; $i++): ?>
-                    <span class="star <?php echo $i <= $review['rating'] ? '' : 'empty'; ?>">★</span>
-                  <?php endfor; ?>
-                </div>
-
-                <div class="reviewer-name">
-                  <?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?>
-                </div>
-
-                <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
-              </div>
-            <!-- <?php endforeach; ?>
-          <?php endif; ?>
-        </div> -->
       <div class="carousel-container">
         <button class="arrow-btn left" onclick="scrollCarousel('yourReviews', -1)">‹</button>
-        <!-- <div class="carousel-wrapper" id="yourReviews">
+        <div class="carousel-wrapper" id="yourReviews">
           <?php if (empty($customerReviews)): ?>
             <div class="empty-state" style="width: 100%; min-width: 100%;">
               <div class="empty-state-icon">📝</div>
@@ -442,7 +412,7 @@ try {
               </div>
             <?php endforeach; ?>
           <?php endif; ?>
-        </div> -->
+        </div>
         <button class="arrow-btn right" onclick="scrollCarousel('yourReviews', 1)">›</button>
       </div>
     </div>
