@@ -211,7 +211,8 @@ if ($warranty_id > 0) {
 
   #dateScroll, #timeScroll {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll !important;
+    -webkit-overflow-scrolling: touch;
     gap: 15px;
     padding: 10px 5px;
     scrollbar-width: none;
