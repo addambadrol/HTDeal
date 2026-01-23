@@ -226,7 +226,7 @@ if ($warranty_id > 0) {
   }
 
   .date-btn {
-    min-width: 120px;
+    min-width: 100px;
     padding: 15px 10px;
     border-radius: 15px;
     border: 2px solid #333;
