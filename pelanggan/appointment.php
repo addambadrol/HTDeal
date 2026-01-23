@@ -9,7 +9,7 @@ if (!isset($_SESSION['account_id']) || $_SESSION['role'] != 'pelanggan') {
 }
 
 // Check if this is a warranty appointment
-$warranty_id = isset($_GET['warranty_id']) ? intval($_GET['warranty_id']) : 0;
+$warranty_id    = isset($_GET['warranty_id']) ? intval($_GET['warranty_id']) : 0;
 $warranty_claim = null;
 
 if ($warranty_id > 0) {
@@ -18,18 +18,21 @@ if ($warranty_id > 0) {
         $stmt = $pdo->prepare("
             SELECT wc.*, a.invoice_number, a.total_amount
             FROM warranty_claims wc
-            LEFT JOIN appointments a ON wc.invoice_number = a.invoice_number
-            WHERE wc.warranty_id = ? AND wc.account_id = ?
+            LEFT JOIN appointments a 
+                ON wc.invoice_number = a.invoice_number
+            WHERE wc.warranty_id = ? 
+              AND wc.account_id = ?
         ");
+
         $stmt->execute([$warranty_id, $_SESSION['account_id']]);
         $warranty_claim = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
         // Verify warranty is approved
         if (!$warranty_claim || $warranty_claim['claim_status'] !== 'approved') {
             header("Location: warranty_status.php");
             exit();
         }
-        
+
         // Check if already scheduled
         if ($warranty_claim['appointment_id']) {
             header("Location: warranty_status.php");
@@ -43,34 +46,41 @@ if ($warranty_id > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HTDeal - <?php echo $warranty_claim ? 'Schedule Repair' : 'Appointment'; ?></title>
-  <link rel="stylesheet" href="./style.css" />
-  <style>
-  * {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>
+HTDeal - <?php echo $warranty_claim ? 'Schedule Repair' : 'Appointment'; ?>
+</title>
+
+<link rel="stylesheet" href="./style.css" />
+
+<style>
+/* ================= GLOBAL ================= */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+}
 
-  body {
+body {
     background-color: #121212;
     color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-  }
+}
 
-  .page-header {
+/* ================= HEADER ================= */
+.page-header {
     max-width: 1290px;
     margin: 50px auto 30px;
     padding: 0 20px;
     text-align: center;
-  }
+}
 
-  .page-header h1 {
+.page-header h1 {
     font-size: 48px;
     font-weight: 900;
     background: linear-gradient(135deg, #8b4dff 0%, #6e22dd 100%);
@@ -81,85 +91,88 @@ if ($warranty_id > 0) {
     letter-spacing: 1px;
     text-transform: uppercase;
     filter: drop-shadow(0 0 20px rgba(139, 77, 255, 0.3));
-  }
+}
 
-  .page-header p {
+.page-header p {
     font-size: 16px;
     color: #aaa;
-  }
+}
 
-  main {
+/* ================= MAIN ================= */
+main {
     max-width: 900px;
-    margin: 40px auto 60px auto;
+    margin: 40px auto 60px;
     padding: 0 20px;
-  }
+}
 
-  /* Warranty Info Box */
-  .warranty-info-box {
+/* ================= WARRANTY INFO ================= */
+.warranty-info-box {
     background: rgba(110, 34, 221, 0.1);
     border: 2px solid #6e22dd;
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 30px;
-  }
+}
 
-  .warranty-info-header {
+.warranty-info-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 2px solid rgba(110, 34, 221, 0.3);
-  }
+}
 
-  .warranty-info-title {
+.warranty-info-title {
     font-size: 18px;
     font-weight: 700;
     color: #6e22dd;
     text-transform: uppercase;
-  }
+}
 
-  .warranty-details {
+.warranty-details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-  }
+}
 
-  .warranty-detail-item {
+.warranty-detail-item {
     display: flex;
     flex-direction: column;
     gap: 5px;
-  }
+}
 
-  .warranty-label {
+.warranty-label {
     font-size: 12px;
     color: #888;
     text-transform: uppercase;
-  }
+}
 
-  .warranty-value {
+.warranty-value {
     font-size: 15px;
     color: #fff;
     font-weight: 600;
-  }
+}
 
-  .warranty-reason {
+.warranty-reason {
     grid-column: 1 / -1;
     background: rgba(0, 0, 0, 0.3);
     padding: 15px;
     border-radius: 8px;
     margin-top: 10px;
-  }
+}
 
-  .appointment-container {
+/* ================= CONTAINER ================= */
+.appointment-container {
     background: #1a1a1a;
     border: 2px solid #6e22dd;
     border-radius: 20px;
     padding: 50px;
     box-shadow: 0 10px 40px rgba(110, 34, 221, 0.3);
-  }
+}
 
-  .section-title {
+/* ================= SECTIONS ================= */
+.section-title {
     font-size: 18px;
     font-weight: 700;
     color: #6e22dd;
@@ -169,25 +182,21 @@ if ($warranty_id > 0) {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
+}
 
-  .section-title::before {
-    content: '';
-    font-size: 24px;
-  }
-
-  .scroll-section {
+.scroll-section {
     margin-bottom: 50px;
-  }
+}
 
-  .scroll-row {
+.scroll-row {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
-  }
+}
 
-  .scroll-btn {
+/* ================= BUTTONS ================= */
+.scroll-btn {
     background: rgba(110, 34, 221, 0.2);
     border: 2px solid #6e22dd;
     border-radius: 50%;
@@ -201,31 +210,34 @@ if ($warranty_id > 0) {
     justify-content: center;
     transition: all 0.3s ease;
     flex-shrink: 0;
-  }
+}
 
-  .scroll-btn:hover {
+.scroll-btn:hover {
     background: #6e22dd;
     color: white;
     transform: scale(1.1);
-  }
+}
 
-  #dateScroll, #timeScroll {
+/* ================= SCROLL AREA ================= */
+#dateScroll,
+#timeScroll {
     display: flex;
     overflow-x: auto;
     gap: 15px;
     padding: 10px 5px;
     scrollbar-width: none;
     scroll-behavior: smooth;
-    flex: 0 0 700px; 
+    flex: 0 0 700px;
     max-width: 100%;
-  }
+}
 
-  #dateScroll::-webkit-scrollbar,
-  #timeScroll::-webkit-scrollbar {
+#dateScroll::-webkit-scrollbar,
+#timeScroll::-webkit-scrollbar {
     display: none;
-  }
+}
 
-  .date-btn {
+/* ================= DATE BUTTON ================= */
+.date-btn {
     min-width: 100px;
     padding: 15px 10px;
     border-radius: 15px;
@@ -237,43 +249,23 @@ if ($warranty_id > 0) {
     transition: all 0.3s ease;
     flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .date-btn:hover {
+.date-btn:hover {
     border-color: #6e22dd;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(110, 34, 221, 0.4);
-  }
+}
 
-  .date-btn.selected {
+.date-btn.selected {
     background: linear-gradient(135deg, #6e22dd 0%, #5a1bb8 100%);
     border-color: #6e22dd;
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(110, 34, 221, 0.6);
-  }
+}
 
-  .date-day {
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0.8;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
-  }
-
-  .date-number {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 5px;
-  }
-
-  .date-month {
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0.8;
-    letter-spacing: 1px;
-  }
-
-  .time-btn {
+/* ================= TIME BUTTON ================= */
+.time-btn {
     min-width: 90px;
     padding: 18px 15px;
     border-radius: 15px;
@@ -287,247 +279,23 @@ if ($warranty_id > 0) {
     transition: all 0.3s ease;
     flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  .time-btn:hover {
+.time-btn:hover {
     border-color: #6e22dd;
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(110, 34, 221, 0.4);
-  }
+}
 
-  .time-btn.selected {
+.time-btn.selected {
     background: linear-gradient(135deg, #6e22dd 0%, #5a1bb8 100%);
     border-color: #6e22dd;
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(110, 34, 221, 0.6);
-  }
+}
 
-  /* REFERENCE CODE SECTION */
-  .reference-code-section {
-    margin-bottom: 50px;
-  }
-
-  .reference-code-container {
-    background: rgba(110, 34, 221, 0.05);
-    border: 2px solid rgba(110, 34, 221, 0.3);
-    border-radius: 15px;
-    padding: 25px;
-    margin-top: 15px;
-  }
-
-  .reference-code-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-
-  .reference-code-header span:first-child {
-    font-size: 24px;
-  }
-
-  .reference-code-header h3 {
-    font-size: 14px;
-    color: #aaa;
-    font-weight: 500;
-  }
-
-  .reference-input-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-
-  .reference-input {
-    flex: 1;
-    background: #1a1a1a;
-    border: 2px solid #333;
-    border-radius: 10px;
-    padding: 15px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .reference-input:focus {
-    outline: none;
-    border-color: #6e22dd;
-    box-shadow: 0 0 15px rgba(110, 34, 221, 0.3);
-  }
-
-  .reference-input::placeholder {
-    text-transform: none;
-    letter-spacing: normal;
-    color: #666;
-  }
-
-  .validate-btn {
-    background: linear-gradient(135deg, #6e22dd 0%, #5a1bb8 100%);
-    border: none;
-    border-radius: 10px;
-    padding: 15px 30px;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-  }
-
-  .validate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(110, 34, 221, 0.4);
-  }
-
-  .validate-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .reference-result {
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
-    display: none;
-  }
-
-  .reference-result.success {
-    background: rgba(34, 197, 94, 0.1);
-    border: 2px solid #22c55e;
-    display: block;
-  }
-
-  .reference-result.error {
-    background: rgba(239, 68, 68, 0.1);
-    border: 2px solid #ef4444;
-    display: block;
-  }
-
-  .reference-result-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .reference-result-icon {
-    font-size: 24px;
-  }
-
-  .reference-result-text {
-    flex: 1;
-  }
-
-  .reference-result-text h4 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
-
-  .reference-result.success h4 {
-    color: #22c55e;
-  }
-
-  .reference-result.error h4 {
-    color: #ef4444;
-  }
-
-  .reference-result-text p {
-    font-size: 14px;
-    color: #aaa;
-  }
-
-  .skip-reference {
-    text-align: center;
-    margin-top: 15px;
-  }
-
-  .skip-reference button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-  }
-
-  .skip-reference button:hover {
-    color: #6e22dd;
-  }
-
-  .selection-info {
-    background: rgba(110, 34, 221, 0.1);
-    border: 1px solid rgba(110, 34, 221, 0.3);
-    border-radius: 15px;
-    padding: 20px;
-    margin-top: 30px;
-    text-align: center;
-  }
-
-  .selection-info h3 {
-    font-size: 16px;
-    color: #6e22dd;
-    margin-bottom: 15px;
-    font-weight: 700;
-  }
-
-  .selection-details {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-
-  .selection-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .selection-label {
-    font-size: 12px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .selection-value {
-    font-size: 18px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .confirm-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #6e22dd 0%, #5a1bb8 100%);
-    border: none;
-    padding: 18px 0;
-    border-radius: 15px;
-    color: white;
-    font-weight: 800;
-    cursor: pointer;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 40px;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(110, 34, 221, 0.4);
-  }
-
-  .confirm-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(110, 34, 221, 0.6);
-  }
-
-  .confirm-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  footer {
+/* ================= FOOTER ================= */
+footer {
     text-align: center;
     padding: 30px 20px;
     background-color: #0a0a0a;
@@ -535,27 +303,29 @@ if ($warranty_id > 0) {
     color: #666;
     margin-top: auto;
     border-top: 1px solid rgba(110, 34, 221, 0.2);
-  }
+}
 
-  @media (max-width: 768px) {
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
     .page-header h1 {
-      font-size: 28px;
+        font-size: 28px;
     }
 
     .appointment-container {
-      padding: 30px 20px;
+        padding: 30px 20px;
     }
 
     .warranty-details {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 
     .reference-input-group {
-      flex-direction: column;
+        flex-direction: column;
     }
-  }
-  </style>
+}
+</style>
 </head>
+
 <body>
   <?php include 'header.php'; ?>
 
