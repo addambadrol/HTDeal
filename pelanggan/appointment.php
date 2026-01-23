@@ -211,12 +211,11 @@ if ($warranty_id > 0) {
 
   #dateScroll, #timeScroll {
     display: flex;
-    overflow-x: scroll !important;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
     gap: 15px;
     padding: 10px 5px;
     scrollbar-width: none;
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     flex: 1;
   }
 
@@ -922,24 +921,14 @@ function toggleSkipReference() {
   }
 
   function scrollLeft(id) {
-  const container = document.getElementById(id);
-  if (!container) return;
-  
-  container.scrollBy({
-    left: -300,
-    behavior: 'auto'  // Gunakan 'auto' bukan 'smooth'
-  });
-}
+    const container = document.getElementById(id);
+    container.scrollBy({ left: -300, behavior: "smooth" });
+  }
 
-function scrollRight(id) {
-  const container = document.getElementById(id);
-  if (!container) return;
-  
-  container.scrollBy({
-    left: 300,
-    behavior: 'auto'
-  });
-}
+  function scrollRight(id) {
+    const container = document.getElementById(id);
+    container.scrollBy({ left: 300, behavior: "smooth" });
+  }
 
   function confirmAppointment() {
   if (selectedDate !== null && selectedTime !== null) {
