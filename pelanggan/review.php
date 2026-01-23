@@ -43,177 +43,174 @@ try {
     flex-direction: column;
   }
 
+  /* ===== HEADER (UNCHANGED) ===== */
+  header {
+    background-color: #6e22dd;
+    padding: 10px 20px;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 25px;
+    margin-left: auto;
+  }
+
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: #ccc;
+  }
+
+  .profile-icon img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+
+  /* ===== PAGE HEADER ===== */
   .page-header {
     text-align: center;
-    padding: 60px 20px 40px;
-    background: linear-gradient(180deg, rgba(110, 34, 221, 0.2) 0%, transparent 100%);
-    position: relative;
+    padding: 50px 20px 70px;
+    background: #fff;
+    color: #000;
   }
 
   .page-title {
-    font-size: 48px;
-    font-weight: 900;
-    background: linear-gradient(135deg, #8b4dff, #6e22dd);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
   }
 
   .page-subtitle {
-    font-size: 18px;
-    color: #bbb;
-    font-weight: 400;
-    margin-bottom: 30px;
+    font-size: 14px;
+    color: #444;
   }
 
-  .add-review-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #6e22dd 0%, #8b4dff 100%);
-    color: #fff;
-    padding: 15px 35px;
-    border-radius: 50px;
-    border: none;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 25px rgba(110, 34, 221, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .add-review-btn:hover {
-    background: linear-gradient(135deg, #5a1bb8 0%, #7a3ee6 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px rgba(110, 34, 221, 0.6);
-  }
-
-  .add-review-btn::before {
-    content: '+';
-    font-size: 24px;
-    font-weight: 700;
-  }
-
-  .reviews-container {
-    max-width: 1400px;
-    margin: 60px auto;
+  /* ===== GRID REVIEW LAYOUT ===== */
+  .review-grid-container{
+    max-width: 1300px;
+    margin: 0 auto 80px;
     padding: 0 40px;
   }
 
-  .reviews-grid {
+  .review-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px 50px;
+    justify-items: center;
   }
 
-  .review-card {
-    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-    border: 2px solid #333;
-    border-radius: 15px;
-    padding: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .review-card:hover {
-    transform: translateY(-8px);
-    border-color: #6e22dd;
-    box-shadow: 0 12px 35px rgba(110, 34, 221, 0.5);
-  }
-
-  .review-image {
+  .review-box{
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-bottom: 2px solid #333;
+    max-width: 320px;
+    height: 420px;
+    border: 4px solid #000;
+    padding: 18px;
+    background: #fff;
+    position: relative;
   }
 
-  .placeholder-image {
+  .review-inner{
     width: 100%;
-    aspect-ratio: 1;
-    background: rgba(110, 34, 221, 0.05);
-    border-bottom: 2px solid rgba(110, 34, 221, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 80px;
-    color: rgba(110, 34, 221, 0.3);
-  }
-
-  .review-content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .rating {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 12px;
-  }
-
-  .star {
-    color: #fbbf24;
-    font-size: 18px;
-  }
-
-  .star.empty {
-    color: rgba(255, 255, 255, 0.1);
-  }
-
-  .reviewer-name {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-
-  .review-text {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #aaa;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 100px 20px;
-    grid-column: 1 / -1;
-  }
-
-  .empty-state-icon {
-    font-size: 100px;
-    margin-bottom: 25px;
-    opacity: 0.2;
-  }
-
-  .empty-state-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #6e22dd;
+    height: 220px;
+    border: 4px solid #000;
     margin-bottom: 15px;
+    overflow: hidden;
+    background:#f5f5f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
 
-  .empty-state-text {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 30px;
+  .review-inner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
   }
 
+  .review-name{
+    font-size:14px;
+    font-weight:700;
+    color:#000;
+    margin-bottom:6px;
+  }
+
+  .review-rating{
+    margin-bottom:8px;
+  }
+
+  .review-rating span{
+    color:#f5b301;
+    font-size:14px;
+  }
+
+  .review-text{
+    font-size:13px;
+    line-height:1.5;
+    color:#222;
+    overflow:hidden;
+    display:-webkit-box;
+    -webkit-line-clamp:6;
+    -webkit-box-orient:vertical;
+  }
+
+  /* ===== EMPTY STATE ===== */
+  .empty-state{
+    grid-column:1 / -1;
+    text-align:center;
+    padding:80px 20px;
+    border:3px dashed #aaa;
+    color:#444;
+    background:#fafafa;
+  }
+
+  /* ===== FLOATING ADD REVIEW BUTTON ===== */
+  .floating-add-btn{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    font-weight:700;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    transition:0.3s;
+    z-index:999;
+  }
+
+  .floating-add-btn:hover{
+    transform:scale(1.1) rotate(90deg);
+    background:#333;
+  }
+
+  /* ===== FOOTER ===== */
   footer {
     text-align: center;
     padding: 30px 20px;
@@ -224,95 +221,76 @@ try {
     border-top: 1px solid rgba(110, 34, 221, 0.2);
   }
 
-  @media (max-width: 1200px) {
-    .reviews-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 25px;
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:1000px){
+    .review-grid{
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media (max-width: 768px) {
-    .page-title {
-      font-size: 32px;
-    }
-
-    .page-subtitle {
-      font-size: 16px;
-    }
-
-    .reviews-container {
-      padding: 0 20px;
-      margin: 40px auto;
-    }
-
-    .reviews-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .add-review-btn {
-      padding: 12px 28px;
-      font-size: 14px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .reviews-grid {
+  @media(max-width:600px){
+    .review-grid{
       grid-template-columns: 1fr;
     }
   }
+
   </style>
 </head>
 <body>
-  <?php include 'header.php'; ?>
 
-  <div class="page-header">
-    <h1 class="page-title">CUSTOMER REVIEWS</h1>
-    <p class="page-subtitle">Leave your review to us</p>
-    <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
-      <a href="addreview.php" class="add-review-btn">Add Review</a>
-    <?php endif; ?>
-  </div>
+<?php include 'header.php'; ?>
 
-  <div class="reviews-container">
-    <div class="reviews-grid">
-      <?php if (empty($customerReviews)): ?>
-        <div class="empty-state">
-          <div class="empty-state-icon">📝</div>
-          <div class="empty-state-title">No Reviews Yet</div>
-          <p class="empty-state-text">Be the first to share your experience with us!</p>
-          <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
-            <a href="addreview.php" class="add-review-btn">Write First Review</a>
-          <?php endif; ?>
-        </div>
-      <?php else: ?>
-        <?php foreach ($customerReviews as $review): ?>
-          <div class="review-card">
+<div class="page-header">
+  <h1 class="page-title">CUSTOMER REVIEW</h1>
+  <p class="page-subtitle">Leave your review to us</p>
+</div>
+
+<div class="review-grid-container">
+  <div class="review-grid">
+
+    <?php if (empty($customerReviews)): ?>
+      <div class="empty-state">
+        <h3>No Reviews Yet</h3>
+        <p>Be the first to share your experience with us.</p>
+      </div>
+    <?php else: ?>
+      <?php foreach ($customerReviews as $review): ?>
+        <div class="review-box">
+          
+          <div class="review-inner">
             <?php if (!empty($review['review_image'])): ?>
-              <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review" class="review-image" />
+              <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review">
             <?php else: ?>
-              <div class="placeholder-image">📷</div>
+              📷
             <?php endif; ?>
-
-            <div class="review-content">
-              <div class="rating">
-                <?php for ($i = 1; $i <= 5; $i++): ?>
-                  <span class="star <?php echo $i <= $review['rating'] ? '' : 'empty'; ?>">★</span>
-                <?php endfor; ?>
-              </div>
-
-              <div class="reviewer-name">
-                <?php echo htmlspecialchars($review['first_name'] . ' ' . $review['last_name']); ?>
-              </div>
-
-              <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
-            </div>
           </div>
-        <?php endforeach; ?>
-      <?php endif; ?>
-    </div>
-  </div>
 
-  <?php include 'footer.php'; ?>
+          <div class="review-name">
+            <?php echo htmlspecialchars($review['first_name'].' '.$review['last_name']); ?>
+          </div>
+
+          <div class="review-rating">
+            <?php for($i=1;$i<=5;$i++): ?>
+              <span><?php echo $i <= $review['rating'] ? '★' : '☆'; ?></span>
+            <?php endfor; ?>
+          </div>
+
+          <div class="review-text">
+            <?php echo htmlspecialchars($review['review_text']); ?>
+          </div>
+
+        </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
+
+  </div>
+</div>
+
+<?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
+  <a href="addreview.php" class="floating-add-btn">+</a>
+<?php endif; ?>
+
+<?php include 'footer.php'; ?>
+
 </body>
 </html>
