@@ -923,55 +923,16 @@ function toggleSkipReference() {
 
   function scrollLeft(id) {
   const container = document.getElementById(id);
-  if (!container) return;
-  
-  const scrollAmount = 300;
-  const start = container.scrollLeft;
-  const target = start - scrollAmount;
-  const duration = 300; // milliseconds
-  const startTime = performance.now();
-  
-  function animate(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    // Easing function untuk smooth animation
-    const easeProgress = progress * (2 - progress); // easeOutQuad
-    
-    container.scrollLeft = start + (target - start) * easeProgress;
-    
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    }
+  if (container) {
+    container.scrollLeft = container.scrollLeft - 300;
   }
-  
-  requestAnimationFrame(animate);
 }
 
 function scrollRight(id) {
   const container = document.getElementById(id);
-  if (!container) return;
-  
-  const scrollAmount = 300;
-  const start = container.scrollLeft;
-  const target = start + scrollAmount;
-  const duration = 300;
-  const startTime = performance.now();
-  
-  function animate(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    
-    const easeProgress = progress * (2 - progress);
-    
-    container.scrollLeft = start + (target - start) * easeProgress;
-    
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    }
+  if (container) {
+    container.scrollLeft = container.scrollLeft + 300;
   }
-  
-  requestAnimationFrame(animate);
 }
 
   function confirmAppointment() {
