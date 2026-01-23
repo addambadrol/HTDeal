@@ -379,7 +379,7 @@ try {
           <a href="addreview.php" class="add-review-btn">+</a>
         <?php endif; ?>
       </div>
-<div class="carousel-wrapper" id="yourReviews">
+<!-- <div class="carousel-wrapper" id="yourReviews">
           <?php if (empty($customerReviews)): ?>
             <div class="empty-state" style="width: 100%; min-width: 100%;">
               <div class="empty-state-icon">📝</div>
@@ -387,7 +387,7 @@ try {
               <p class="empty-state-text">Be the first to share your experience with us!</p>
             </div>
           <?php else: ?>
-            <?php foreach ($customerReviews as $review): ?>
+            <?php foreach ($customerReviews as $review): ?> -->
               <div class="review-card">
                 <?php if (!empty($review['review_image'])): ?>
                   <img src="<?php echo htmlspecialchars($review['review_image']); ?>" alt="Review" class="review-image" />
@@ -407,9 +407,9 @@ try {
 
                 <p class="review-text"><?php echo htmlspecialchars($review['review_text']); ?></p>
               </div>
-            <?php endforeach; ?>
+            <!-- <?php endforeach; ?>
           <?php endif; ?>
-        </div>
+        </div> -->
       <div class="carousel-container">
         <button class="arrow-btn left" onclick="scrollCarousel('yourReviews', -1)">‹</button>
         <!-- <div class="carousel-wrapper" id="yourReviews">
