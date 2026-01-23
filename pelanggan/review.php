@@ -66,38 +66,39 @@ try {
     font-size: 18px;
     color: #bbb;
     font-weight: 400;
-    margin-bottom: 30px;
   }
 
   .add-review-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 70px;
+    height: 70px;
     background: linear-gradient(135deg, #6e22dd 0%, #8b4dff 100%);
     color: #fff;
-    padding: 15px 35px;
-    border-radius: 50px;
+    border-radius: 50%;
     border: none;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 36px;
+    font-weight: 300;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 6px 25px rgba(110, 34, 221, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    box-shadow: 0 8px 30px rgba(110, 34, 221, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
 
   .add-review-btn:hover {
     background: linear-gradient(135deg, #5a1bb8 0%, #7a3ee6 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px rgba(110, 34, 221, 0.6);
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 12px 40px rgba(110, 34, 221, 0.8);
   }
 
   .add-review-btn::before {
     content: '+';
-    font-size: 24px;
-    font-weight: 700;
   }
 
   .reviews-container {
@@ -108,7 +109,7 @@ try {
 
   .reviews-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 40px;
   }
@@ -226,7 +227,7 @@ try {
 
   @media (max-width: 1200px) {
     .reviews-grid {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 25px;
     }
   }
@@ -246,19 +247,30 @@ try {
     }
 
     .reviews-grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
     .add-review-btn {
-      padding: 12px 28px;
-      font-size: 14px;
+      width: 60px;
+      height: 60px;
+      font-size: 32px;
+      bottom: 30px;
+      right: 30px;
     }
   }
 
   @media (max-width: 480px) {
     .reviews-grid {
       grid-template-columns: 1fr;
+    }
+
+    .add-review-btn {
+      width: 55px;
+      height: 55px;
+      font-size: 28px;
+      bottom: 20px;
+      right: 20px;
     }
   }
   </style>
@@ -269,10 +281,11 @@ try {
   <div class="page-header">
     <h1 class="page-title">CUSTOMER REVIEWS</h1>
     <p class="page-subtitle">Leave your review to us</p>
-    <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
-      <a href="addreview.php" class="add-review-btn">Add Review</a>
-    <?php endif; ?>
   </div>
+
+  <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
+    <a href="addreview.php" class="add-review-btn"></a>
+  <?php endif; ?>
 
   <div class="reviews-container">
     <div class="reviews-grid">
@@ -281,9 +294,6 @@ try {
           <div class="empty-state-icon">📝</div>
           <div class="empty-state-title">No Reviews Yet</div>
           <p class="empty-state-text">Be the first to share your experience with us!</p>
-          <?php if ($isLoggedIn && $userRole == 'pelanggan'): ?>
-            <a href="addreview.php" class="add-review-btn">Write First Review</a>
-          <?php endif; ?>
         </div>
       <?php else: ?>
         <?php foreach ($customerReviews as $review): ?>
