@@ -382,7 +382,7 @@ try {
 
       <div class="carousel-container">
         <button class="arrow-btn left" onclick="scrollCarousel('yourReviews', -1)">‹</button>
-        <div class="carousel-wrapper" id="yourReviews">
+        <!-- <div class="carousel-wrapper" id="yourReviews">
           <?php if (empty($customerReviews)): ?>
             <div class="empty-state" style="width: 100%; min-width: 100%;">
               <div class="empty-state-icon">📝</div>
@@ -412,7 +412,7 @@ try {
               </div>
             <?php endforeach; ?>
           <?php endif; ?>
-        </div>
+        </div> -->
         <button class="arrow-btn right" onclick="scrollCarousel('yourReviews', 1)">›</button>
       </div>
     </div>
