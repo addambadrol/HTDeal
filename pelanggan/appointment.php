@@ -921,14 +921,33 @@ function toggleSkipReference() {
   }
 
   function scrollLeft(id) {
-    const container = document.getElementById(id);
-    container.scrollBy({ left: -300, behavior: "smooth" });
-  }
+  const container = document.getElementById(id);
+  console.log("Before Left:", container.scrollLeft);
 
-  function scrollRight(id) {
-    const container = document.getElementById(id);
-    container.scrollBy({ left: 300, behavior: "smooth" });
-  }
+  container.scrollBy({
+    left: -300,
+    behavior: "smooth"
+  });
+
+  setTimeout(() => {
+    console.log("After Left:", container.scrollLeft);
+  }, 300);
+}
+
+function scrollRight(id) {
+  const container = document.getElementById(id);
+  console.log("Before Right:", container.scrollLeft);
+
+  container.scrollBy({
+    left: 300,
+    behavior: "smooth"
+  });
+
+  setTimeout(() => {
+    console.log("After Right:", container.scrollLeft);
+  }, 300);
+}
+
 
   function confirmAppointment() {
   if (selectedDate !== null && selectedTime !== null) {
