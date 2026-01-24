@@ -135,7 +135,7 @@ require_once '../db_config.php';
 
   /* CONTENT CARDS - SIDE BY SIDE */
   .cards-container {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 100px 25px;
     display: grid;
