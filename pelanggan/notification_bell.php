@@ -29,6 +29,7 @@ if (isset($_SESSION['account_id'])) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    z-index: 2000;
 }
 
 .notification-bell-icon {
