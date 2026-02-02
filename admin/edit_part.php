@@ -58,25 +58,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Category options
 $categories = [
-    'MONITOR' => 'Monitor',
-    'GAMING BOOSTER PACK' => 'Gaming Booster Pack',
-    'CHASSIS' => 'Chassis',
-    'MOTHERBOARD' => 'Motherboard',
-    'PROCESSOR' => 'Processor',
-    'GRAPHICS CARD' => 'Graphics Card',
-    'COOLER' => 'Cooler',
-    'THERMAL COOLING' => 'Thermal Cooling',
-    'RAM' => 'RAM',
-    'SSD' => 'SSD',
-    'SATA DRIVE' => 'SATA Drive',
-    'POWER SUPPLY' => 'Power Supply',
-    'WIRELESS ADAPTER' => 'Wireless Adapter',
-    'OPERATING SYSTEM' => 'Operating System',
-    'ARGB LED' => 'ARGB LED',
-    'ACCESSORIES' => 'Accessories',
-    'PERIPHERALS' => 'Peripherals',
-    'KEYBOARD' => 'Keyboard',
-    'WEBCAM' => 'Webcam'
+    'Monitor' => 'Monitor',
+    'Casing' => 'Casing',
+    'CPU' => 'CPU',
+    'GPU' => 'GPU',
+    'Cooler' => 'Cooler',
+    'Ram' => 'Ram',
+    'Storage' => 'Storage',
+    'Power Supply' => 'Power Supply',
+    'Motherboard' => 'Motherboard'
 ];
 ?>
 <!DOCTYPE html>
