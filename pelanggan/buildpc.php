@@ -401,6 +401,22 @@ foreach ($allCategories as $cat => $emoji) {
     background: rgba(110, 34, 221, 0.3);
     border-color: #6e22dd;
   }
+
+  /* Disabled Button State */
+button:disabled {
+  background: #333 !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.5;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+button:disabled:hover {
+  background: #333 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
   
   /* Footer */
   footer {
@@ -514,20 +530,18 @@ foreach ($allCategories as $cat => $emoji) {
             </thead>
             <tbody>
               <?php 
-              if (empty($items)): 
-              ?>
-              <tr class="out-of-stock">
-                <td colspan="5" class="empty-message">No items available in this category</td>
-                <input type="radio" name="<?php echo htmlspecialchars($groupName); ?>" value="none" data-price="0" disabled checked />
-              </tr>
-              <?php 
-              else:
-                  $firstItem = true;
-                  $rowIndex = 1;
-                  foreach ($items as $item): 
-                      $isOutOfStock = $item['stock'] <= 0;
-                      $rowClass = $isOutOfStock ? 'out-of-stock' : '';
-                      if ($firstItem && !$isOutOfStock) $rowClass .= ' selected';
+if (empty($items)): 
+?>
+<tr class="out-of-stock">
+  <td colspan="5" class="empty-message">No items available in this category</td>
+  <input type="radio" name="<?php echo htmlspecialchars($groupName); ?>" value="none" data-price="0" disabled />
+</tr>
+<?php 
+else:
+    $rowIndex = 1;
+    foreach ($items as $item): 
+        $isOutOfStock = $item['stock'] <= 0;
+        $rowClass = $isOutOfStock ? 'out-of-stock' : '';
                       
                       // Determine which price to display
                       $displayPrice = $item['selling_price'];
@@ -541,16 +555,15 @@ foreach ($allCategories as $cat => $emoji) {
                   data-group="<?php echo htmlspecialchars($groupName); ?>">
                 <td>
                   <input 
-                    type="radio" 
-                    name="<?php echo htmlspecialchars($groupName); ?>" 
-                    value="<?php echo htmlspecialchars($item['part_name']); ?>" 
-                    data-price="<?php echo $displayPrice; ?>"
-                    data-part-id="<?php echo $item['part_id']; ?>"
-                    data-part-code="<?php echo htmlspecialchars($item['part_code']); ?>"
-                    <?php echo ($firstItem && !$isOutOfStock) ? 'checked' : ''; ?>
-                    <?php echo $isOutOfStock ? 'disabled' : ''; ?>
-                  />
-                  <span class="row-number"><?php echo ($firstItem && !$isOutOfStock) ? $rowIndex : ''; ?></span>
+  type="radio" 
+  name="<?php echo htmlspecialchars($groupName); ?>" 
+  value="<?php echo htmlspecialchars($item['part_name']); ?>" 
+  data-price="<?php echo $displayPrice; ?>"
+  data-part-id="<?php echo $item['part_id']; ?>"
+  data-part-code="<?php echo htmlspecialchars($item['part_code']); ?>"
+  <?php echo $isOutOfStock ? 'disabled' : ''; ?>
+/>
+<span class="row-number"></span>
                 </td>
                 <td><?php echo htmlspecialchars($item['part_code']); ?></td>
                 <td>
@@ -575,7 +588,6 @@ foreach ($allCategories as $cat => $emoji) {
 </td>
               </tr>
               <?php 
-                  if ($firstItem && !$isOutOfStock) $firstItem = false;
                   $rowIndex++;
                   endforeach;
               endif;
@@ -593,7 +605,7 @@ foreach ($allCategories as $cat => $emoji) {
     <div class="sidebar">
       <div class="total-label">Total Price</div>
       <div class="total-price" id="totalPrice">RM0.00</div>
-      <button id="nextBtn">Continue to Checkout</button>
+      <button id="nextBtn" disabled>Continue to Checkout</button>
       <button id="resetBtn" class="reset">Reset Selection</button>
     </div>
   </div>
@@ -602,16 +614,69 @@ foreach ($allCategories as $cat => $emoji) {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  const totalCategories = 9; // Monitor, Casing, CPU, GPU, Cooler, RAM, Storage, Power Supply, Motherboard
+  const nextBtn = document.getElementById('nextBtn');
+  
+  // Update row numbers display
   document.querySelectorAll('.options table').forEach(table => {
-  table.querySelectorAll('tbody tr').forEach((row, index) => {
-    const rowNumberSpan = row.querySelector('.row-number');
-    if (rowNumberSpan) {
-      rowNumberSpan.textContent = index + 1;
-    }
+    table.querySelectorAll('tbody tr').forEach((row, index) => {
+      const rowNumberSpan = row.querySelector('.row-number');
+      if (rowNumberSpan) {
+        rowNumberSpan.textContent = index + 1;
+      }
+    });
   });
-});
 
+  // Get all category details elements in order
+  const categoryDetails = Array.from(document.querySelectorAll('details'));
+  
+  // Function to check if all categories have selections
+  function validateAllSelections() {
+    let selectedCount = 0;
+    document.querySelectorAll('.options').forEach(optionsDiv => {
+      const groupName = optionsDiv.getAttribute('data-group');
+      const radio = document.querySelector(`input[name="${groupName}"]:checked`);
+      if (radio && !radio.disabled && radio.value !== 'none') {
+        selectedCount++;
+      }
+    });
+    
+    // Enable/disable button based on selection count
+    if (selectedCount === totalCategories) {
+      nextBtn.disabled = false;
+    } else {
+      nextBtn.disabled = true;
+    }
+    
+    return selectedCount === totalCategories;
+  }
 
+  // Function to calculate total
+  function calculateTotal() {
+    let total = 0;
+    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+      if (!radio.disabled && radio.value !== 'none') {
+        total += parseFloat(radio.dataset.price) || 0;
+      }
+    });
+    return total;
+  }
+
+  // Function to update total UI
+  function updateTotalUI() {
+    document.getElementById("totalPrice").textContent = "RM" + calculateTotal().toFixed(2);
+  }
+
+  // Function to get next category
+  function getNextCategory(currentDetails) {
+    const currentIndex = categoryDetails.indexOf(currentDetails);
+    if (currentIndex >= 0 && currentIndex < categoryDetails.length - 1) {
+      return categoryDetails[currentIndex + 1];
+    }
+    return null;
+  }
+
+  // Row click handler
   document.querySelectorAll('.options table tbody tr').forEach(row => {
     row.addEventListener('click', function(e) {
       if (this.classList.contains('out-of-stock')) return;
@@ -621,63 +686,70 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const rowNum = this.getAttribute('data-row-num');
       const table = this.closest('table');
+      const currentDetails = this.closest('details');
       
+      // Clear previous selections in this table
       table.querySelectorAll('tbody tr').forEach(tr => {
         tr.classList.remove('selected');
         const numberSpan = tr.querySelector('.row-number');
-        if (numberSpan) numberSpan.textContent = ''; // Resetkan nombor semasa deselect
-        const trRadio = tr.querySelector('input[type="radio"]');
-        if (trRadio) trRadio.checked = false;
+        if (numberSpan) numberSpan.textContent = tr.getAttribute('data-row-num') || '';
       });
       
+      // Select current row
       this.classList.add('selected');
       radio.checked = true;
       const numberSpan = this.querySelector('.row-number');
-      if (numberSpan) numberSpan.textContent = rowNum;
+      if (numberSpan) numberSpan.textContent = '✓';
       
+      // Update total and validate
       updateTotalUI();
-    });
-  });
-
-  function calculateTotal() {
-    let total = 0;
-    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
-      if (!radio.disabled) total += parseFloat(radio.dataset.price) || 0;
-    });
-    return total;
-  }
-
-  function updateTotalUI() {
-    document.getElementById("totalPrice").textContent = "RM" + calculateTotal().toFixed(2);
-  }
-
-  document.getElementById("resetBtn").addEventListener("click", () => {
-    document.querySelectorAll('.options table').forEach(table => {
-      const firstEnabledRow = table.querySelector('tbody tr:not(.out-of-stock)');
-      if (firstEnabledRow) {
-        const radio = firstEnabledRow.querySelector('input[type="radio"]');
-        const rowNum = firstEnabledRow.getAttribute('data-row-num');
-        
-        table.querySelectorAll('tbody tr').forEach(tr => {
-          tr.classList.remove('selected');
-          const numberSpan = tr.querySelector('.row-number');
-          if (numberSpan) numberSpan.textContent = ''; // Resetkan nombor semasa reset
-          const trRadio = tr.querySelector('input[type="radio"]');
-          if (trRadio) trRadio.checked = false;
-        });
-        
-        if (radio) {
-          radio.checked = true;
-          firstEnabledRow.classList.add('selected');
-          const numberSpan = firstEnabledRow.querySelector('.row-number');
-          if (numberSpan) numberSpan.textContent = rowNum;
+      validateAllSelections();
+      
+      // Auto-collapse current and open next category
+      setTimeout(() => {
+        currentDetails.open = false;
+        const nextCategory = getNextCategory(currentDetails);
+        if (nextCategory) {
+          nextCategory.open = true;
+          // Scroll to next category smoothly
+          nextCategory.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-      }
+      }, 300);
     });
-    updateTotalUI();
   });
 
+  // Reset button handler
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    // Clear all selections
+    document.querySelectorAll('.options table').forEach(table => {
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        tr.classList.remove('selected');
+        const numberSpan = tr.querySelector('.row-number');
+        if (numberSpan) {
+          numberSpan.textContent = tr.getAttribute('data-row-num') || '';
+        }
+        const trRadio = tr.querySelector('input[type="radio"]');
+        if (trRadio) trRadio.checked = false;
+      });
+    });
+    
+    // Close all categories except first
+    categoryDetails.forEach((details, index) => {
+      details.open = (index === 0);
+    });
+    
+    // Update UI
+    updateTotalUI();
+    validateAllSelections();
+  });
+
+  // Next button handler
   document.getElementById("nextBtn").addEventListener("click", () => {
+    if (!validateAllSelections()) {
+      alert('Please select components from all categories');
+      return;
+    }
+    
     let selectedItems = [];
     document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
       if (!radio.disabled && radio.value !== 'none') {
@@ -692,20 +764,16 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    if (selectedItems.length === 0) {
-      alert('Please select at least one component');
-      return;
-    }
-    
     sessionStorage.setItem('selectedBuild', JSON.stringify(selectedItems));
     sessionStorage.setItem('totalPrice', calculateTotal());
     
     window.location.href = 'appointment.php';
   });
 
+  // Initial validation
+  validateAllSelections();
   updateTotalUI();
 });
-
 </script>
 </body>
 </html>
