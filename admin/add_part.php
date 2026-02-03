@@ -3,21 +3,68 @@
 require_once '../db_config.php';
 
 $category = isset($_GET['category']) ? $_GET['category'] : '';
+
+// Function to generate part code
+function generatePartCode($pdo, $category) {
+    // Category prefix mapping
+    $prefixes = [
+        'Monitor' => 'MON',
+        'Casing' => 'CAS',
+        'CPU' => 'CPU',
+        'GPU' => 'GPU',
+        'Cooler' => 'COO',
+        'Ram' => 'RAM',
+        'Storage' => 'SSD',
+        'Power Supply' => 'PSU',
+        'Motherboard' => 'MOB'
+    ];
+    
+    // Get prefix for category
+    $prefix = isset($prefixes[$category]) ? $prefixes[$category] : 'XXX';
+    
+    try {
+        // Get last part code for this category
+        $stmt = $pdo->prepare("SELECT part_code FROM inventory WHERE category = ? ORDER BY part_code DESC LIMIT 1");
+        $stmt->execute([$category]);
+        $lastPart = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($lastPart) {
+            // Extract number from last part code (e.g., MON-008 -> 8)
+            $lastCode = $lastPart['part_code'];
+            $parts = explode('-', $lastCode);
+            $lastNumber = isset($parts[1]) ? intval($parts[1]) : 0;
+            $newNumber = $lastNumber + 1;
+        } else {
+            // No existing parts, start from 1
+            $newNumber = 1;
+        }
+        
+        // Format: PREFIX-XXX (3 digits with leading zeros)
+        $newPartCode = $prefix . '-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+        
+        return $newPartCode;
+        
+    } catch(PDOException $e) {
+        return $prefix . '-001'; // Default if error
+    }
+}
  
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $part_code = $_POST['part_code'];
     $category = $_POST['category'];
     $part_name = $_POST['part_name'];
     $stock = $_POST['stock'];
     $purchase_price = $_POST['purchase_price'];
     $selling_price = $_POST['selling_price'];
     
+    // Auto-generate part code
+    $part_code = generatePartCode($pdo, $category);
+    
     try {
         $stmt = $pdo->prepare("INSERT INTO inventory (part_code, category, part_name, stock, purchase_price, selling_price) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$part_code, $category, $part_name, $stock, $purchase_price, $selling_price]);
         
-        $_SESSION['success'] = "Part added successfully!";
+        $_SESSION['success'] = "Part added successfully with code: " . $part_code;
         header("Location: inventory.php");
         exit();
     } catch(PDOException $e) {
@@ -37,6 +84,12 @@ $categories = [
     'Power Supply' => 'Power Supply',
     'Motherboard' => 'Motherboard'
 ];
+
+// Preview part code when category selected (for display only)
+$previewCode = '';
+if (!empty($category)) {
+    $previewCode = generatePartCode($pdo, $category);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -260,6 +313,37 @@ $categories = [
     margin-top: 5px;
   }
   
+  /* Part Code Preview */
+  .part-code-preview {
+    background: rgba(110, 34, 221, 0.15);
+    border: 2px dashed #6e22dd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  
+  .part-code-preview .label {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .part-code-preview .code {
+    font-size: 24px;
+    font-weight: 800;
+    color: #8b4dff;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+  }
+  
+  .part-code-preview .code.placeholder {
+    color: #555;
+    font-style: italic;
+  }
+  
   @media (max-width: 768px) {
     .form-row {
       grid-template-columns: 1fr;
@@ -285,10 +369,10 @@ $categories = [
         <div class="alert alert-error"><?php echo $error; ?></div>
       <?php endif; ?>
       
-      <form method="POST" action="">
+      <form method="POST" action="" id="addPartForm">
         <div class="form-group">
           <label>Category <span>*</span></label>
-          <select name="category" required>
+          <select name="category" id="categorySelect" required>
             <option value="">Select Category</option>
             <?php foreach($categories as $key => $value): ?>
               <option value="<?php echo $key; ?>" <?php echo $category === $key ? 'selected' : ''; ?>>
@@ -298,24 +382,26 @@ $categories = [
           </select>
         </div>
         
-        <div class="form-row">
-          <div class="form-group">
-            <label>Part Code <span>*</span></label>
-            <input type="text" name="part_code" placeholder="e.g., MON001" required />
-            <div class="form-hint">Unique identifier for the part</div>
+        <!-- Part Code Preview -->
+        <div class="part-code-preview">
+          <div class="label">Auto-Generated Part Code</div>
+          <div class="code <?php echo empty($previewCode) ? 'placeholder' : ''; ?>" id="partCodePreview">
+            <?php echo !empty($previewCode) ? $previewCode : 'Select category first'; ?>
           </div>
-          
+        </div>
+        
+        <div class="form-row">
           <div class="form-group">
             <label>Stock Quantity <span>*</span></label>
             <input type="number" name="stock" placeholder="0" min="0" required />
             <div class="form-hint">Current stock available</div>
           </div>
-        </div>
-        
-        <div class="form-group">
-          <label>Part Name <span>*</span></label>
-          <input type="text" name="part_name" placeholder="Enter part name" required />
-          <div class="form-hint">Full descriptive name of the part</div>
+          
+          <div class="form-group">
+            <label>Part Name <span>*</span></label>
+            <input type="text" name="part_name" placeholder="Enter part name" required />
+            <div class="form-hint">Full descriptive name of the part</div>
+          </div>
         </div>
         
         <div class="form-row">
@@ -339,6 +425,23 @@ $categories = [
       </form>
     </div>
   </div>
+  
+  <script>
+    // Update part code preview when category changes
+    document.getElementById('categorySelect').addEventListener('change', function() {
+      const category = this.value;
+      const previewElement = document.getElementById('partCodePreview');
+      
+      if (category) {
+        // Reload page with category parameter to get new preview
+        window.location.href = 'add_part.php?category=' + encodeURIComponent(category);
+      } else {
+        previewElement.textContent = 'Select category first';
+        previewElement.classList.add('placeholder');
+      }
+    });
+  </script>
+  
   <?php include 'footer.php'; ?>
 </body>
 </html>
