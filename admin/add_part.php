@@ -19,6 +19,11 @@ function generatePartCode($pdo, $category) {
         'Motherboard' => 'MOB'
     ];
     
+    // Starting numbers for specific categories (optional override)
+    $startingNumbers = [
+        'Monitor' => 9,
+    ];
+    
     // Get prefix for category
     $prefix = isset($prefixes[$category]) ? $prefixes[$category] : 'XXX';
     
@@ -35,8 +40,8 @@ function generatePartCode($pdo, $category) {
             $lastNumber = isset($parts[1]) ? intval($parts[1]) : 0;
             $newNumber = $lastNumber + 1;
         } else {
-            // No existing parts, start from 1
-            $newNumber = 1;
+            // No existing parts, use starting number or default to 1
+            $newNumber = isset($startingNumbers[$category]) ? $startingNumbers[$category] : 1;
         }
         
         // Format: PREFIX-XXX (3 digits with leading zeros)
