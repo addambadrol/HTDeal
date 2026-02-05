@@ -44,6 +44,8 @@ header {
     padding: 5px;
     order: 2;
     z-index: 1001;
+    background: transparent;
+    border: none;
 }
 
 .menu-toggle span {
@@ -232,11 +234,11 @@ header {
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <div class="menu-toggle" id="menuToggle">
+        <button class="menu-toggle" id="menuToggle" type="button">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
 
         <div class="nav-links" id="navLinks">
             <a href="homepage.php">HOME</a>
@@ -254,39 +256,73 @@ header {
     </div>
 </header>
 
-<!-- JavaScript for Mobile Menu Toggle -->
+<!-- JavaScript for Mobile Menu Toggle - FIXED VERSION -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
+(function() {
+    'use strict';
     
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
-            // Toggle active class on menu button
-            menuToggle.classList.toggle('active');
-            // Toggle active class on navigation
-            navLinks.classList.toggle('active');
-        });
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
         
-        // Close menu when clicking on a link
+        // Check if elements exist
+        if (!menuToggle || !navLinks) {
+            console.error('Menu elements not found');
+            return;
+        }
+        
+        // Toggle menu function
+        function toggleMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Menu toggle clicked'); // Debug log
+            
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            // Log state
+            console.log('Menu is now:', navLinks.classList.contains('active') ? 'OPEN' : 'CLOSED');
+        }
+        
+        // Close menu function
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            console.log('Menu closed');
+        }
+        
+        // Add click event to toggle button
+        menuToggle.addEventListener('click', toggleMenu);
+        
+        // Close menu when clicking on navigation links
         const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
+        links.forEach(function(link) {
             link.addEventListener('click', function() {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+                closeMenu();
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
+            // Check if click is outside menu and toggle button
             const isClickInsideMenu = navLinks.contains(event.target);
             const isClickOnToggle = menuToggle.contains(event.target);
             
-            if (!isClickInsideMenu && !isClickOnToggle && navLinks.classList.contains('active')) {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
+            // If menu is open and click is outside, close it
+            if (navLinks.classList.contains('active') && !isClickInsideMenu && !isClickOnToggle) {
+                closeMenu();
             }
         });
-    }
-});
+        
+        // Close menu on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        
+    });
+})();
 </script>
