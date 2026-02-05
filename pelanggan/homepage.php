@@ -665,8 +665,8 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         <div class="hero-content-wrapper">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    YOUR PC
-                    <span class="highlight">YOUR RULES</span>
+                    BUILD MACHINE
+                    <span class="highlight">WITH TASTE</span>
                 </h1>
                 <p class="hero-description">
                     Choose your parts. Set your power. Custom PC builds, repairs, warranty claims, and more — all in one place.
