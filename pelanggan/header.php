@@ -1,8 +1,11 @@
 <?php
-// header.php - Reusable header component with SIDEBAR NAVIGATION for mobile
+// header.php - Balanced mobile layout: Hamburger Left, Logo Center, Icons Right
 ?>
 <style>
-/* Header Styles - WITH SIDEBAR */
+/* ========================================
+   HEADER STYLES - BALANCED MOBILE LAYOUT
+   ======================================== */
+
 header {
     background-color: #6e22dd;
     padding: 10px 15px;
@@ -28,6 +31,7 @@ header {
 .logo img {
     height: 40px;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    transition: height 0.3s ease;
 }
 
 /* Hamburger Menu Button */
@@ -39,6 +43,7 @@ header {
     background: transparent;
     border: none;
     z-index: 1001;
+    order: 1; /* First on mobile */
 }
 
 .menu-toggle span {
@@ -119,11 +124,14 @@ header {
     transform: scale(1.1);
 }
 
-/* SIDEBAR - Hidden by default */
+/* ========================================
+   SIDEBAR NAVIGATION
+   ======================================== */
+
 .sidebar {
     position: fixed;
     top: 0;
-    left: -300px; /* Hidden off-screen */
+    left: -300px;
     width: 280px;
     height: 100vh;
     background: linear-gradient(180deg, #6e22dd 0%, #5a1fb8 100%);
@@ -133,9 +141,8 @@ header {
     overflow-y: auto;
 }
 
-/* Sidebar Active State */
 .sidebar.active {
-    left: 0; /* Slide in */
+    left: 0;
 }
 
 /* Sidebar Header */
@@ -192,10 +199,6 @@ header {
     padding-left: 30px;
 }
 
-.sidebar-menu a:active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Sidebar Footer */
 .sidebar-footer {
     position: absolute;
@@ -208,7 +211,7 @@ header {
     font-size: 12px;
 }
 
-/* Overlay - Dark background when sidebar open */
+/* Overlay */
 .sidebar-overlay {
     position: fixed;
     top: 0;
@@ -231,24 +234,57 @@ header {
    RESPONSIVE - MOBILE & TABLET
    ======================================== */
 
+/* Tablet and Mobile - 768px and below */
 @media (max-width: 768px) {
     
-    /* Show hamburger menu */
-    .menu-toggle {
-        display: flex;
+    /* MOBILE LAYOUT: [☰] [Logo] [🔔][👤] */
+    
+    .navbar {
+        display: grid;
+        grid-template-columns: auto 1fr auto; /* Left, Center, Right */
+        align-items: center;
+        gap: 10px;
     }
     
-    /* Hide desktop navigation */
-    .nav-links {
-        display: none;
+    /* Show hamburger menu - LEFT */
+    .menu-toggle {
+        display: flex;
+        order: 1;
+        grid-column: 1;
+    }
+    
+    /* Logo - CENTER */
+    .logo {
+        order: 2;
+        grid-column: 2;
+        text-align: center;
+        justify-self: center;
+    }
+    
+    .logo img {
+        height: 32px; /* Smaller on mobile */
+    }
+    
+    /* Profile icons - RIGHT */
+    .profile-icon {
+        order: 3;
+        grid-column: 3;
+        margin-left: 0;
+        justify-self: end;
     }
     
     .profile-icon img {
         width: 35px;
         height: 35px;
     }
+    
+    /* Hide desktop navigation */
+    .nav-links {
+        display: none;
+    }
 }
 
+/* Mobile - Small devices (480px and below) */
 @media (max-width: 480px) {
     
     header {
@@ -256,7 +292,7 @@ header {
     }
     
     .logo img {
-        height: 32px;
+        height: 28px; /* Even smaller for very small phones */
     }
     
     .profile-icon img {
@@ -264,29 +300,51 @@ header {
         height: 30px;
     }
     
+    .menu-toggle {
+        padding: 5px;
+    }
+    
     .sidebar {
         width: 250px;
         left: -250px;
+    }
+}
+
+/* Very small devices (360px and below) */
+@media (max-width: 360px) {
+    
+    .logo img {
+        height: 24px;
+    }
+    
+    .profile-icon img {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .navbar {
+        gap: 5px; /* Tighter spacing */
     }
 }
 </style>
 
 <header>
     <div class="navbar">
-        <div class="logo">
-            <a href="homepage.php">
-                <img src="../picture/logo.png" alt="Logo" />
-            </a>
-        </div>
-
-        <!-- Hamburger Menu Button (Mobile Only) -->
+        <!-- Hamburger Menu (Mobile Only) - LEFT -->
         <button class="menu-toggle" id="menuToggle">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- Desktop Navigation -->
+        <!-- Logo - CENTER on mobile, LEFT on desktop -->
+        <div class="logo">
+            <a href="homepage.php">
+                <img src="../picture/logo.png" alt="Logo" />
+            </a>
+        </div>
+
+        <!-- Desktop Navigation (Hidden on mobile) -->
         <div class="nav-links">
             <a href="homepage.php">HOME</a>
             <a href="buildservices.php">BUILD & SERVICES</a>
@@ -294,6 +352,7 @@ header {
             <a href="about.php">ABOUT</a>
         </div>
 
+        <!-- Profile Icons - RIGHT -->
         <div class="profile-icon">
             <?php include 'notification_bell.php'; ?>
             <a href="profile.php">
@@ -325,41 +384,39 @@ header {
     </div>
 </div>
 
-<!-- Overlay (Dark background) -->
+<!-- Overlay -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- JavaScript for Sidebar -->
 <script>
 (function() {
-    // Get elements
+    'use strict';
+    
     var menuToggle = document.getElementById('menuToggle');
     var sidebar = document.getElementById('sidebar');
     var sidebarClose = document.getElementById('sidebarClose');
     var sidebarOverlay = document.getElementById('sidebarOverlay');
     
-    // Open sidebar
     function openSidebar() {
         if (sidebar && sidebarOverlay && menuToggle) {
             sidebar.classList.add('active');
             sidebarOverlay.classList.add('active');
             menuToggle.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-            console.log('Sidebar OPENED');
+            document.body.style.overflow = 'hidden';
+            console.log('✅ Sidebar OPENED');
         }
     }
     
-    // Close sidebar
     function closeSidebar() {
         if (sidebar && sidebarOverlay && menuToggle) {
             sidebar.classList.remove('active');
             sidebarOverlay.classList.remove('active');
             menuToggle.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-            console.log('Sidebar CLOSED');
+            document.body.style.overflow = '';
+            console.log('✅ Sidebar CLOSED');
         }
     }
     
-    // Toggle sidebar
     function toggleSidebar() {
         if (sidebar.classList.contains('active')) {
             closeSidebar();
@@ -400,6 +457,6 @@ header {
         }
     });
     
-    console.log('Sidebar initialized');
+    console.log('🚀 Sidebar initialized - Approach 2: Balanced Layout');
 })();
 </script>
