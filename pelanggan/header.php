@@ -1,14 +1,14 @@
 <?php
-// header.php - GUARANTEED BALANCED MOBILE LAYOUT
+// header.php - SCOPED to header only, won't affect page content
 ?>
 <style>
 /* ========================================
-   HEADER - GUARANTEED MOBILE RESPONSIVE
+   SCOPED HEADER STYLES ONLY
    ======================================== */
 
-* {
-    margin: 0;
-    padding: 0;
+/* Only reset header elements, not whole page */
+header,
+header * {
     box-sizing: border-box;
 }
 
@@ -20,6 +20,7 @@ header {
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(110, 34, 221, 0.4);
     width: 100%;
+    margin: 0;
 }
 
 /* DESKTOP LAYOUT */
@@ -32,17 +33,17 @@ header {
     width: 100%;
 }
 
-.logo {
+.navbar .logo {
     z-index: 1001;
 }
 
-.logo img {
+.navbar .logo img {
     height: 40px;
     display: block;
 }
 
 /* Hamburger - HIDDEN on desktop */
-.menu-toggle {
+.navbar .menu-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
@@ -52,7 +53,7 @@ header {
     z-index: 1001;
 }
 
-.menu-toggle span {
+.navbar .menu-toggle span {
     width: 25px;
     height: 3px;
     background-color: white;
@@ -61,25 +62,25 @@ header {
     border-radius: 3px;
 }
 
-.menu-toggle.active span:nth-child(1) {
+.navbar .menu-toggle.active span:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
 
-.menu-toggle.active span:nth-child(2) {
+.navbar .menu-toggle.active span:nth-child(2) {
     opacity: 0;
 }
 
-.menu-toggle.active span:nth-child(3) {
+.navbar .menu-toggle.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Desktop Nav Links */
-.nav-links {
+.navbar .nav-links {
     display: flex;
     gap: 35px;
 }
 
-.nav-links a {
+.navbar .nav-links a {
     color: #fff;
     text-decoration: none;
     font-weight: 600;
@@ -87,17 +88,17 @@ header {
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+.navbar .nav-links a:hover {
     color: #ccc;
 }
 
-.profile-icon {
+.navbar .profile-icon {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.profile-icon img {
+.navbar .profile-icon img {
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -106,10 +107,10 @@ header {
 }
 
 /* ========================================
-   SIDEBAR
+   SIDEBAR - Won't affect page content
    ======================================== */
 
-.sidebar {
+.mobile-sidebar {
     position: fixed;
     top: 0;
     left: -300px;
@@ -122,11 +123,11 @@ header {
     overflow-y: auto;
 }
 
-.sidebar.active {
+.mobile-sidebar.active {
     left: 0;
 }
 
-.sidebar-header {
+.mobile-sidebar .sidebar-header {
     padding: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
@@ -134,11 +135,11 @@ header {
     align-items: center;
 }
 
-.sidebar-logo img {
+.mobile-sidebar .sidebar-logo img {
     height: 35px;
 }
 
-.sidebar-close {
+.mobile-sidebar .sidebar-close {
     background: transparent;
     border: none;
     color: white;
@@ -153,15 +154,15 @@ header {
     transition: transform 0.3s ease;
 }
 
-.sidebar-close:hover {
+.mobile-sidebar .sidebar-close:hover {
     transform: rotate(90deg);
 }
 
-.sidebar-menu {
+.mobile-sidebar .sidebar-menu {
     padding: 20px 0;
 }
 
-.sidebar-menu a {
+.mobile-sidebar .sidebar-menu a {
     display: block;
     color: white;
     text-decoration: none;
@@ -172,13 +173,13 @@ header {
     border-left: 4px solid transparent;
 }
 
-.sidebar-menu a:hover {
+.mobile-sidebar .sidebar-menu a:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-left-color: white;
     padding-left: 30px;
 }
 
-.sidebar-footer {
+.mobile-sidebar .sidebar-footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -189,7 +190,7 @@ header {
     font-size: 12px;
 }
 
-.sidebar-overlay {
+.mobile-sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -202,18 +203,18 @@ header {
     transition: all 0.3s ease;
 }
 
-.sidebar-overlay.active {
+.mobile-sidebar-overlay.active {
     opacity: 1;
     visibility: visible;
 }
 
 /* ========================================
-   MOBILE LAYOUT - CRITICAL SECTION!
+   MOBILE LAYOUT - SCOPED TO NAVBAR ONLY
    ======================================== */
 
 @media screen and (max-width: 768px) {
     
-    /* FORCE GRID LAYOUT */
+    /* ONLY affect navbar, not page content */
     .navbar {
         display: grid !important;
         grid-template-columns: auto 1fr auto !important;
@@ -223,70 +224,64 @@ header {
         justify-content: normal !important;
     }
     
-    /* HAMBURGER - LEFT (Column 1) */
-    .menu-toggle {
+    /* HAMBURGER - LEFT */
+    .navbar .menu-toggle {
         display: flex !important;
         grid-column: 1 !important;
         grid-row: 1 !important;
-        order: 1 !important;
     }
     
-    /* LOGO - CENTER (Column 2) */
-    .logo {
+    /* LOGO - CENTER */
+    .navbar .logo {
         grid-column: 2 !important;
         grid-row: 1 !important;
-        order: 2 !important;
         text-align: center !important;
         justify-self: center !important;
         margin: 0 auto !important;
     }
     
-    .logo img {
+    .navbar .logo img {
         height: 32px !important;
         margin: 0 auto !important;
     }
     
-    /* ICONS - RIGHT (Column 3) */
-    .profile-icon {
+    /* ICONS - RIGHT */
+    .navbar .profile-icon {
         grid-column: 3 !important;
         grid-row: 1 !important;
-        order: 3 !important;
         justify-self: end !important;
         margin-left: 0 !important;
     }
     
-    .profile-icon img {
+    .navbar .profile-icon img {
         width: 35px !important;
         height: 35px !important;
     }
     
-    /* HIDE DESKTOP NAV - CRITICAL! */
-    .nav-links {
+    /* HIDE DESKTOP NAV */
+    .navbar .nav-links {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
-        position: absolute !important;
-        left: -9999px !important;
     }
     
-    .sidebar {
+    .mobile-sidebar {
         width: 250px;
         left: -250px;
     }
 }
 
-/* SMALLER MOBILE */
 @media screen and (max-width: 480px) {
     
     header {
         padding: 8px 10px !important;
     }
     
-    .logo img {
+    .navbar .logo img {
         height: 28px !important;
     }
     
-    .profile-icon img {
+    .navbar .profile-icon img {
         width: 30px !important;
         height: 30px !important;
     }
@@ -296,14 +291,13 @@ header {
     }
 }
 
-/* VERY SMALL PHONES */
 @media screen and (max-width: 360px) {
     
-    .logo img {
+    .navbar .logo img {
         height: 24px !important;
     }
     
-    .profile-icon img {
+    .navbar .profile-icon img {
         width: 28px !important;
         height: 28px !important;
     }
@@ -316,21 +310,21 @@ header {
 
 <header>
     <div class="navbar">
-        <!-- HAMBURGER (Mobile: Left) -->
+        <!-- HAMBURGER (Mobile) -->
         <button class="menu-toggle" id="menuToggle" type="button">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- LOGO (Mobile: Center, Desktop: Left) -->
+        <!-- LOGO -->
         <div class="logo">
             <a href="homepage.php">
                 <img src="../picture/logo.png" alt="HTDeal Logo" />
             </a>
         </div>
 
-        <!-- DESKTOP NAV (Hidden on mobile) -->
+        <!-- DESKTOP NAV -->
         <div class="nav-links">
             <a href="homepage.php">HOME</a>
             <a href="buildservices.php">BUILD & SERVICES</a>
@@ -338,7 +332,7 @@ header {
             <a href="about.php">ABOUT</a>
         </div>
 
-        <!-- PROFILE ICONS (Mobile: Right, Desktop: Right) -->
+        <!-- PROFILE ICONS -->
         <div class="profile-icon">
             <?php include 'notification_bell.php'; ?>
             <a href="profile.php">
@@ -349,7 +343,7 @@ header {
 </header>
 
 <!-- SIDEBAR (Mobile Navigation) -->
-<div class="sidebar" id="sidebar">
+<div class="mobile-sidebar" id="mobileSidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">
             <img src="../picture/logo.png" alt="HTDeal Logo" />
@@ -358,11 +352,11 @@ header {
     </div>
     
     <nav class="sidebar-menu">
-        <a href="homepage.php">HOME</a>
-        <a href="buildservices.php">BUILD & SERVICES</a>
-        <a href="review.php">REVIEW</a>
-        <a href="about.php">ABOUT</a>
-        <a href="profile.php">PROFILE</a>
+        <a href="homepage.php">🏠 HOME</a>
+        <a href="buildservices.php">🔧 BUILD & SERVICES</a>
+        <a href="review.php">⭐ REVIEW</a>
+        <a href="about.php">ℹ️ ABOUT</a>
+        <a href="profile.php">👤 PROFILE</a>
     </nav>
     
     <div class="sidebar-footer">
@@ -371,7 +365,7 @@ header {
 </div>
 
 <!-- OVERLAY -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<div class="mobile-sidebar-overlay" id="sidebarOverlay"></div>
 
 <!-- JAVASCRIPT -->
 <script>
@@ -379,12 +373,11 @@ header {
     'use strict';
     
     var menuToggle = document.getElementById('menuToggle');
-    var sidebar = document.getElementById('sidebar');
+    var sidebar = document.getElementById('mobileSidebar');
     var sidebarClose = document.getElementById('sidebarClose');
     var sidebarOverlay = document.getElementById('sidebarOverlay');
     
     if (!menuToggle || !sidebar || !sidebarClose || !sidebarOverlay) {
-        console.error('Sidebar elements not found');
         return;
     }
     
@@ -393,7 +386,6 @@ header {
         sidebarOverlay.classList.add('active');
         menuToggle.classList.add('active');
         document.body.style.overflow = 'hidden';
-        console.log('✅ Sidebar opened');
     }
     
     function closeSidebar() {
@@ -401,7 +393,6 @@ header {
         sidebarOverlay.classList.remove('active');
         menuToggle.classList.remove('active');
         document.body.style.overflow = '';
-        console.log('✅ Sidebar closed');
     }
     
     function toggleSidebar() {
@@ -440,7 +431,5 @@ header {
             closeSidebar();
         }
     });
-    
-    console.log('🚀 Mobile sidebar ready');
 })();
 </script>
