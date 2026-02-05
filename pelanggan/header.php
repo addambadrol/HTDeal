@@ -1,10 +1,16 @@
 <?php
-// header.php - Balanced mobile layout: Hamburger Left, Logo Center, Icons Right
+// header.php - GUARANTEED BALANCED MOBILE LAYOUT
 ?>
 <style>
 /* ========================================
-   HEADER STYLES - BALANCED MOBILE LAYOUT
+   HEADER - GUARANTEED MOBILE RESPONSIVE
    ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 header {
     background-color: #6e22dd;
@@ -13,8 +19,10 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(110, 34, 221, 0.4);
+    width: 100%;
 }
 
+/* DESKTOP LAYOUT */
 .navbar {
     display: flex;
     align-items: center;
@@ -30,11 +38,10 @@ header {
 
 .logo img {
     height: 40px;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-    transition: height 0.3s ease;
+    display: block;
 }
 
-/* Hamburger Menu Button */
+/* Hamburger - HIDDEN on desktop */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -43,7 +50,6 @@ header {
     background: transparent;
     border: none;
     z-index: 1001;
-    order: 1; /* First on mobile */
 }
 
 .menu-toggle span {
@@ -55,7 +61,6 @@ header {
     border-radius: 3px;
 }
 
-/* X Animation when active */
 .menu-toggle.active span:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
 }
@@ -68,11 +73,10 @@ header {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-/* Desktop Navigation */
+/* Desktop Nav Links */
 .nav-links {
     display: flex;
     gap: 35px;
-    align-items: center;
 }
 
 .nav-links a {
@@ -80,24 +84,7 @@ header {
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 5px 0;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    transition: width 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -116,16 +103,10 @@ header {
     cursor: pointer;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.profile-icon img:hover {
-    border-color: #fff;
-    transform: scale(1.1);
 }
 
 /* ========================================
-   SIDEBAR NAVIGATION
+   SIDEBAR
    ======================================== */
 
 .sidebar {
@@ -145,7 +126,6 @@ header {
     left: 0;
 }
 
-/* Sidebar Header */
 .sidebar-header {
     padding: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -177,7 +157,6 @@ header {
     transform: rotate(90deg);
 }
 
-/* Sidebar Menu */
 .sidebar-menu {
     padding: 20px 0;
 }
@@ -199,7 +178,6 @@ header {
     padding-left: 30px;
 }
 
-/* Sidebar Footer */
 .sidebar-footer {
     position: absolute;
     bottom: 0;
@@ -211,7 +189,6 @@ header {
     font-size: 12px;
 }
 
-/* Overlay */
 .sidebar-overlay {
     position: fixed;
     top: 0;
@@ -231,77 +208,65 @@ header {
 }
 
 /* ========================================
-   RESPONSIVE - MOBILE & TABLET
+   MOBILE LAYOUT - CRITICAL SECTION!
    ======================================== */
 
-/* Tablet and Mobile - 768px and below */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     
-    /* MOBILE LAYOUT: [☰] [Logo] [🔔][👤] */
-    
+    /* FORCE GRID LAYOUT */
     .navbar {
-        display: grid;
-        grid-template-columns: auto 1fr auto; /* Left, Center, Right */
-        align-items: center;
-        gap: 10px;
+        display: grid !important;
+        grid-template-columns: auto 1fr auto !important;
+        grid-template-rows: 1fr !important;
+        align-items: center !important;
+        gap: 10px !important;
+        justify-content: normal !important;
     }
     
-    /* Show hamburger menu - LEFT */
+    /* HAMBURGER - LEFT (Column 1) */
     .menu-toggle {
-        display: flex;
-        order: 1;
-        grid-column: 1;
+        display: flex !important;
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        order: 1 !important;
     }
     
-    /* Logo - CENTER */
+    /* LOGO - CENTER (Column 2) */
     .logo {
-        order: 2;
-        grid-column: 2;
-        text-align: center;
-        justify-self: center;
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        order: 2 !important;
+        text-align: center !important;
+        justify-self: center !important;
+        margin: 0 auto !important;
     }
     
     .logo img {
-        height: 32px; /* Smaller on mobile */
+        height: 32px !important;
+        margin: 0 auto !important;
     }
     
-    /* Profile icons - RIGHT */
+    /* ICONS - RIGHT (Column 3) */
     .profile-icon {
-        order: 3;
-        grid-column: 3;
-        margin-left: 0;
-        justify-self: end;
+        grid-column: 3 !important;
+        grid-row: 1 !important;
+        order: 3 !important;
+        justify-self: end !important;
+        margin-left: 0 !important;
     }
     
     .profile-icon img {
-        width: 35px;
-        height: 35px;
+        width: 35px !important;
+        height: 35px !important;
     }
     
-    /* Hide desktop navigation */
+    /* HIDE DESKTOP NAV - CRITICAL! */
     .nav-links {
-        display: none;
-    }
-}
-
-/* Mobile - Small devices (480px and below) */
-@media (max-width: 480px) {
-    
-    header {
-        padding: 8px 10px;
-    }
-    
-    .logo img {
-        height: 28px; /* Even smaller for very small phones */
-    }
-    
-    .profile-icon img {
-        width: 30px;
-        height: 30px;
-    }
-    
-    .menu-toggle {
-        padding: 5px;
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
     }
     
     .sidebar {
@@ -310,41 +275,62 @@ header {
     }
 }
 
-/* Very small devices (360px and below) */
-@media (max-width: 360px) {
+/* SMALLER MOBILE */
+@media screen and (max-width: 480px) {
+    
+    header {
+        padding: 8px 10px !important;
+    }
     
     .logo img {
-        height: 24px;
+        height: 28px !important;
     }
     
     .profile-icon img {
-        width: 28px;
-        height: 28px;
+        width: 30px !important;
+        height: 30px !important;
     }
     
     .navbar {
-        gap: 5px; /* Tighter spacing */
+        gap: 8px !important;
+    }
+}
+
+/* VERY SMALL PHONES */
+@media screen and (max-width: 360px) {
+    
+    .logo img {
+        height: 24px !important;
+    }
+    
+    .profile-icon img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    .navbar {
+        gap: 5px !important;
     }
 }
 </style>
 
 <header>
     <div class="navbar">
-        <!-- Hamburger Menu (Mobile Only) - LEFT -->
-        <button class="menu-toggle" id="menuToggle">
+        <!-- HAMBURGER (Mobile: Left) -->
+        <button class="menu-toggle" id="menuToggle" type="button">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- Logo - CENTER on mobile, LEFT on desktop -->
+        <!-- LOGO (Mobile: Center, Desktop: Left) -->
         <div class="logo">
             <a href="homepage.php">
-                <img src="../picture/logo.png" alt="Logo" />
+                <img src="../picture/logo.png" alt="HTDeal Logo" />
             </a>
         </div>
 
-        <!-- Desktop Navigation (Hidden on mobile) -->
+        <!-- DESKTOP NAV (Hidden on mobile) -->
         <div class="nav-links">
             <a href="homepage.php">HOME</a>
             <a href="buildservices.php">BUILD & SERVICES</a>
@@ -352,7 +338,7 @@ header {
             <a href="about.php">ABOUT</a>
         </div>
 
-        <!-- Profile Icons - RIGHT -->
+        <!-- PROFILE ICONS (Mobile: Right, Desktop: Right) -->
         <div class="profile-icon">
             <?php include 'notification_bell.php'; ?>
             <a href="profile.php">
@@ -362,13 +348,13 @@ header {
     </div>
 </header>
 
-<!-- Sidebar Navigation (Mobile Only) -->
+<!-- SIDEBAR (Mobile Navigation) -->
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">
-            <img src="../picture/logo.png" alt="Logo" />
+            <img src="../picture/logo.png" alt="HTDeal Logo" />
         </div>
-        <button class="sidebar-close" id="sidebarClose">&times;</button>
+        <button class="sidebar-close" id="sidebarClose" type="button">&times;</button>
     </div>
     
     <nav class="sidebar-menu">
@@ -384,10 +370,10 @@ header {
     </div>
 </div>
 
-<!-- Overlay -->
+<!-- OVERLAY -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- JavaScript for Sidebar -->
+<!-- JAVASCRIPT -->
 <script>
 (function() {
     'use strict';
@@ -397,24 +383,25 @@ header {
     var sidebarClose = document.getElementById('sidebarClose');
     var sidebarOverlay = document.getElementById('sidebarOverlay');
     
+    if (!menuToggle || !sidebar || !sidebarClose || !sidebarOverlay) {
+        console.error('Sidebar elements not found');
+        return;
+    }
+    
     function openSidebar() {
-        if (sidebar && sidebarOverlay && menuToggle) {
-            sidebar.classList.add('active');
-            sidebarOverlay.classList.add('active');
-            menuToggle.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            console.log('✅ Sidebar OPENED');
-        }
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        menuToggle.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        console.log('✅ Sidebar opened');
     }
     
     function closeSidebar() {
-        if (sidebar && sidebarOverlay && menuToggle) {
-            sidebar.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            menuToggle.classList.remove('active');
-            document.body.style.overflow = '';
-            console.log('✅ Sidebar CLOSED');
-        }
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.style.overflow = '';
+        console.log('✅ Sidebar closed');
     }
     
     function toggleSidebar() {
@@ -425,38 +412,35 @@ header {
         }
     }
     
-    // Event listeners
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleSidebar();
-        });
-    }
+    menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSidebar();
+    });
     
-    if (sidebarClose) {
-        sidebarClose.addEventListener('click', function(e) {
-            e.stopPropagation();
+    sidebarClose.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeSidebar();
+    });
+    
+    sidebarOverlay.addEventListener('click', function(e) {
+        closeSidebar();
+    });
+    
+    var links = sidebar.querySelectorAll('.sidebar-menu a');
+    for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function() {
             closeSidebar();
         });
     }
     
-    if (sidebarOverlay) {
-        sidebarOverlay.addEventListener('click', closeSidebar);
-    }
-    
-    // Close on link click
-    var sidebarLinks = document.querySelectorAll('.sidebar-menu a');
-    sidebarLinks.forEach(function(link) {
-        link.addEventListener('click', closeSidebar);
-    });
-    
-    // Close on ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && sidebar.classList.contains('active')) {
             closeSidebar();
         }
     });
     
-    console.log('🚀 Sidebar initialized - Approach 2: Balanced Layout');
+    console.log('🚀 Mobile sidebar ready');
 })();
 </script>
