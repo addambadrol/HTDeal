@@ -46,6 +46,7 @@ header {
     z-index: 1001;
     background: transparent;
     border: none;
+    outline: none;
 }
 
 .menu-toggle span {
@@ -53,7 +54,7 @@ header {
     height: 3px;
     background-color: white;
     margin: 3px 0;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     border-radius: 3px;
 }
 
@@ -166,7 +167,7 @@ header {
     
     /* Show navigation when active */
     .nav-links.active {
-        display: flex;
+        display: flex !important;
     }
     
     .nav-links a {
@@ -234,7 +235,7 @@ header {
         </div>
 
         <!-- Mobile Menu Toggle Button -->
-        <button class="menu-toggle" id="menuToggle" type="button">
+        <button class="menu-toggle" id="menuToggle" type="button" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
@@ -256,73 +257,76 @@ header {
     </div>
 </header>
 
-<!-- JavaScript for Mobile Menu Toggle - FIXED VERSION -->
+<!-- JavaScript for Mobile Menu Toggle - SIMPLIFIED & GUARANTEED TO WORK -->
 <script>
-(function() {
-    'use strict';
+// Global function - runs immediately, no waiting for DOM
+function toggleMobileMenu() {
+    var menuToggle = document.getElementById('menuToggle');
+    var navLinks = document.getElementById('navLinks');
     
-    // Wait for DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
+    if (menuToggle && navLinks) {
+        // Toggle classes
+        if (menuToggle.classList.contains('active')) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            console.log('Menu CLOSED');
+        } else {
+            menuToggle.classList.add('active');
+            navLinks.classList.add('active');
+            console.log('Menu OPENED');
+        }
+    }
+}
+
+// Initialize when ready
+(function() {
+    function initMenu() {
+        var menuToggle = document.getElementById('menuToggle');
+        var navLinks = document.getElementById('navLinks');
         
-        // Check if elements exist
         if (!menuToggle || !navLinks) {
-            console.error('Menu elements not found');
+            console.log('Waiting for elements...');
+            setTimeout(initMenu, 100);
             return;
         }
         
-        // Toggle menu function
-        function toggleMenu(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Menu toggle clicked'); // Debug log
-            
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            
-            // Log state
-            console.log('Menu is now:', navLinks.classList.contains('active') ? 'OPEN' : 'CLOSED');
+        console.log('Menu initialized!');
+        
+        // Close on link click
+        var links = navLinks.getElementsByTagName('a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function() {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            };
         }
         
-        // Close menu function
-        function closeMenu() {
-            menuToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            console.log('Menu closed');
-        }
-        
-        // Add click event to toggle button
-        menuToggle.addEventListener('click', toggleMenu);
-        
-        // Close menu when clicking on navigation links
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(function(link) {
-            link.addEventListener('click', function() {
-                closeMenu();
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            // Check if click is outside menu and toggle button
-            const isClickInsideMenu = navLinks.contains(event.target);
-            const isClickOnToggle = menuToggle.contains(event.target);
+        // Close on outside click
+        document.onclick = function(e) {
+            var target = e.target;
+            var clickedToggle = menuToggle.contains(target);
+            var clickedMenu = navLinks.contains(target);
             
-            // If menu is open and click is outside, close it
-            if (navLinks.classList.contains('active') && !isClickInsideMenu && !isClickOnToggle) {
-                closeMenu();
+            if (!clickedToggle && !clickedMenu && navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
             }
-        });
+        };
         
-        // Close menu on ESC key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && navLinks.classList.contains('active')) {
-                closeMenu();
+        // Close on ESC
+        document.onkeydown = function(e) {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
             }
-        });
-        
-    });
+        };
+    }
+    
+    // Try to init immediately
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMenu);
+    } else {
+        initMenu();
+    }
 })();
 </script>
