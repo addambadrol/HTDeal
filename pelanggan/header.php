@@ -1,15 +1,11 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-require_once '../db_config.php';
+// header.php - Reusable header component for customer pages with MOBILE RESPONSIVE
 ?>
-
 <style>
-/* Header Styles */
+/* Header Styles - MOBILE RESPONSIVE */
 header {
     background-color: #6e22dd;
-    padding: 10px 20px;
+    padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,9 +19,16 @@ header {
 .navbar {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    order: 1;
+    z-index: 1001;
 }
 
 .logo img {
@@ -33,10 +36,43 @@ header {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+    order: 2;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 3px;
+}
+
+/* Animate hamburger to X */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .nav-links {
     display: flex;
     gap: 35px;
     margin-left: auto;
+    order: 3;
 }
 
 .nav-links a {
@@ -73,6 +109,7 @@ header {
     align-items: center;
     gap: 10px;
     margin-left: 20px;
+    order: 4;
 }
 
 .profile-icon img {
@@ -90,10 +127,98 @@ header {
     transform: scale(1.1);
 }
 
-/* Responsive */
+/* ========================================
+   RESPONSIVE - MOBILE & TABLET
+   ======================================== */
+
+/* Tablet and Mobile - 768px and below */
 @media (max-width: 768px) {
+    
+    header {
+        padding: 10px 15px;
+    }
+    
+    .navbar {
+        justify-content: space-between;
+    }
+    
+    /* Show mobile menu toggle */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* Hide navigation by default on mobile */
     .nav-links {
         display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        margin-left: 0;
+        background-color: #5a1fb8;
+        border-radius: 8px;
+        padding: 15px 0;
+        margin-top: 15px;
+        order: 5;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Show navigation when active */
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links a {
+        font-size: 16px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a::after {
+        display: none; /* Remove underline animation on mobile */
+    }
+    
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .profile-icon {
+        margin-left: 10px;
+        order: 3;
+    }
+    
+    .profile-icon img {
+        width: 35px;
+        height: 35px;
+        margin-left: 10px;
+    }
+}
+
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+    
+    header {
+        padding: 8px 10px;
+    }
+    
+    .logo img {
+        height: 32px;
+    }
+    
+    .profile-icon img {
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+    }
+    
+    .nav-links a {
+        font-size: 14px;
+        padding: 10px 15px;
     }
 }
 </style>
@@ -106,7 +231,14 @@ header {
             </a>
         </div>
 
-        <div style="width: 100%; text-align: center; justify-content: center;" class="nav-links">
+        <!-- Mobile Menu Toggle Button -->
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="nav-links" id="navLinks">
             <a href="homepage.php">HOME</a>
             <a href="buildservices.php">BUILD & SERVICES</a>
             <a href="review.php">REVIEW</a>
@@ -121,3 +253,40 @@ header {
         </div>
     </div>
 </header>
+
+<!-- JavaScript for Mobile Menu Toggle -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            // Toggle active class on menu button
+            menuToggle.classList.toggle('active');
+            // Toggle active class on navigation
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = navLinks.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnToggle && navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+});
+</script>
