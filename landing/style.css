@@ -1,13 +1,23 @@
-html, body {
-    height: 100%;
-}
+/* ========================================
+   MOBILE-RESPONSIVE STYLESHEET - LANDING PAGE
+   Optimized for Mobile Devices
+   Desktop styles remain unchanged
+   ======================================== */
+
+/* ========================================
+   BASE STYLES (All Devices)
+   ======================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  }
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
 
 body {
     display: flex;
@@ -18,57 +28,58 @@ body {
     margin: 0;
 }
 
-/* Header Styles */
-        header {
-            background-color: #6e22dd;
-            padding: 10px 20px;
-        }
+/* ========================================
+   HEADER STYLES
+   ======================================== */
 
-        .navbar {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-around !important;
-            max-width: 1200px !important;
-            margin: 0 auto !important;
-        }
-
-        .logo img {
-            height: 35px !important;
-        }
-
-        .nav-links {
-            display: flex !important;
-            gap: 25px !important;
-        }
-
-        .nav-links a {
-            color: #fff !important;
-            text-decoration: none !important;
-            font-weight: 600 !important;
-            font-size: 14px !important;
-            transition: color 0.3s !important;
-        }
-
-        .nav-links a:hover {
-            color: #ccc !important;
-        }
-
-        .profile-icon img {
-            width: 35px !important;
-            height: 35px !important;
-            cursor: pointer !important;
-        }
-
-/* Reset & Box Sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+header {
+    background-color: #6e22dd;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(110, 34, 221, 0.4);
 }
 
+.navbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
 
+.logo img {
+    height: 35px !important;
+}
 
-/* Promo Banner */
+.nav-links {
+    display: flex !important;
+    gap: 25px !important;
+}
+
+.nav-links a {
+    color: #fff !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: color 0.3s !important;
+}
+
+.nav-links a:hover {
+    color: #ccc !important;
+}
+
+.profile-icon img {
+    width: 35px !important;
+    height: 35px !important;
+    cursor: pointer !important;
+}
+
+/* ========================================
+   PROMO BANNER
+   ======================================== */
+
 .promo-banner {
     display: center;
     justify-content: space-between;
@@ -86,7 +97,10 @@ body {
     height: auto;
 }
 
-/* Produk */
+/* ========================================
+   PRODUCT INFO
+   ======================================== */
+
 .product-info {
     display: flex;
     align-items: center;
@@ -130,7 +144,10 @@ body {
     background-color: #5a3bbf;
 }
 
-/* Brands */
+/* ========================================
+   BRANDS
+   ======================================== */
+
 .brands {
     text-align: center;
     margin-top: 40px;
@@ -141,13 +158,23 @@ body {
     margin-bottom: 20px;
 }
 
+.brand-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
 .brand-logos img {
     margin: 0 15px;
     width: 100px;
     height: auto;
 }
 
-/* Services */
+/* ========================================
+   SERVICES
+   ======================================== */
+
 .services {
     text-align: center;
     margin-top: 40px;
@@ -156,6 +183,13 @@ body {
 .services h2 {
     font-size: 28px;
     margin-bottom: 20px;
+}
+
+.services-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
 .services-list a {
@@ -173,9 +207,89 @@ body {
     background-color: #5a3bbf;
 }
 
+/* ========================================
+   FORMS & CONTAINERS
+   ======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6e22dd;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #6e22dd;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a1fb8;
+}
+
+.btn-full {
+    width: 100%;
+}
+
 .login-btn:hover {
     background-color: #4a20b3;
 }
+
+/* ========================================
+   EXTRA ELEMENTS
+   ======================================== */
+
 .create-account {
     font-size: 12px;
     text-align: center;
@@ -183,20 +297,275 @@ body {
     color: #bbbbbb;
     user-select: none;
 }
+
 .extra-links p {
     font-size: 12px;
     text-align: center;
     margin: 5px 0;
     color: #bbbbbb;
 }
+
 .extra-links a {
     color: #632ee6;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
 }
+
 .extra-links a:hover {
     text-decoration: underline;
 }
 
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 768px and below
+   ======================================== */
 
+@media screen and (max-width: 768px) {
+    
+    /* ========================================
+       HEADER - MOBILE (handled by header.php)
+       ======================================== */
+    
+    /* ========================================
+       PROMO BANNER - MOBILE
+       ======================================== */
+    
+    .promo-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .promo-text h1 {
+        font-size: 32px;
+    }
+    
+    .promo-image {
+        margin-top: 20px;
+    }
+    
+    /* ========================================
+       PRODUCT INFO - MOBILE
+       ======================================== */
+    
+    .product-info {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .product-image {
+        width: 60%;
+        margin-bottom: 15px;
+        max-width: 200px;
+    }
+    
+    .product-details {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .build-now-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* ========================================
+       BRANDS - MOBILE
+       ======================================== */
+    
+    .brands {
+        padding: 15px;
+    }
+    
+    .brands h2 {
+        font-size: 24px;
+    }
+    
+    .brand-logos {
+        gap: 10px;
+    }
+    
+    .brand-logos img {
+        width: 70px;
+        margin: 0 5px;
+    }
+    
+    /* ========================================
+       SERVICES - MOBILE
+       ======================================== */
+    
+    .services {
+        padding: 15px;
+    }
+    
+    .services h2 {
+        font-size: 24px;
+    }
+    
+    .services-list {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .services-list a {
+        font-size: 16px;
+        padding: 12px 20px;
+        width: 100%;
+        max-width: 350px;
+        margin: 5px auto;
+    }
+    
+    /* ========================================
+       FORMS - MOBILE
+       ======================================== */
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .form-container {
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 16px; /* Prevent iOS zoom */
+    }
+    
+    /* ========================================
+       BUTTONS - MOBILE
+       ======================================== */
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 480px and below (Small phones)
+   ======================================== */
+
+@media screen and (max-width: 480px) {
+    
+    /* Promo */
+    .promo-text h1 {
+        font-size: 24px;
+    }
+    
+    /* Product */
+    .product-image {
+        width: 70%;
+        max-width: 180px;
+    }
+    
+    .old-price {
+        font-size: 14px;
+    }
+    
+    .new-price {
+        font-size: 18px;
+    }
+    
+    /* Brands */
+    .brands h2 {
+        font-size: 20px;
+    }
+    
+    .brand-logos img {
+        width: 60px;
+    }
+    
+    /* Services */
+    .services h2 {
+        font-size: 20px;
+    }
+    
+    .services-list a {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+    
+    /* Forms */
+    .form-container {
+        padding: 15px 10px;
+    }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 360px and below (Very small phones)
+   ======================================== */
+
+@media screen and (max-width: 360px) {
+    
+    /* Promo */
+    .promo-text h1 {
+        font-size: 20px;
+    }
+    
+    /* Services */
+    .services-list a {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+    
+    /* Brands */
+    .brand-logos img {
+        width: 50px;
+    }
+}
+
+/* ========================================
+   MOBILE TOUCH OPTIMIZATIONS
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+    
+    /* Larger touch targets */
+    a, button, input, select, textarea {
+        min-height: 44px;
+    }
+    
+    /* Smooth scrolling on mobile */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevent text size adjustment */
+    body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    /* Better tap highlighting */
+    a, button {
+        -webkit-tap-highlight-color: rgba(110, 34, 221, 0.3);
+    }
+}
+
+/* ========================================
+   LANDSCAPE MODE OPTIMIZATIONS
+   ======================================== */
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    
+    .promo-banner {
+        padding: 20px 15px;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
