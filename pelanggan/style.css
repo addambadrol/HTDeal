@@ -1,8 +1,13 @@
 /* ========================================
-   RESPONSIVE MOBILE-FRIENDLY STYLESHEET
+   MOBILE-RESPONSIVE STYLESHEET
+   Optimized for Mobile Devices Only
+   Desktop styles remain unchanged
    ======================================== */
 
-/* Reset & Box Sizing */
+/* ========================================
+   BASE STYLES (All Devices)
+   ======================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +16,7 @@
 
 html, body {
     height: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 body {
@@ -24,12 +29,12 @@ body {
 }
 
 /* ========================================
-   HEADER STYLES - RESPONSIVE
+   HEADER STYLES
    ======================================== */
 
 header {
     background-color: #6e22dd;
-    padding: 10px 15px; /* Reduced padding for mobile */
+    padding: 10px 15px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -50,7 +55,6 @@ header {
     max-width: 100%;
 }
 
-/* Navigation Links */
 .nav-links {
     display: flex;
     gap: 25px;
@@ -70,7 +74,6 @@ header {
     color: #ccc;
 }
 
-/* Profile Icon */
 .profile-icon {
     display: flex;
     align-items: center;
@@ -85,7 +88,6 @@ header {
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Mobile Menu Toggle Button */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -103,7 +105,94 @@ header {
 }
 
 /* ========================================
-   PROMO BANNER - RESPONSIVE
+   HERO BANNER
+   ======================================== */
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+}
+
+.hero-content-wrapper {
+    position: relative;
+    height: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 60px;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ffffff 0%, #e0d4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-text .subtitle {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background: linear-gradient(135deg, #8b4dff 0%, #6e22dd 100%);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(110, 34, 221, 0.4);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(110, 34, 221, 0.6);
+}
+
+.hero-dragon {
+    flex: 1;
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-dragon img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 60px rgba(110, 34, 221, 0.5));
+}
+
+/* ========================================
+   PROMO BANNER
    ======================================== */
 
 .promo-banner {
@@ -112,7 +201,7 @@ header {
     align-items: center;
     margin-top: 20px;
     padding: 20px;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    flex-wrap: wrap;
 }
 
 .promo-text h1 {
@@ -127,19 +216,19 @@ header {
 }
 
 /* ========================================
-   PRODUCT INFO - RESPONSIVE
+   PRODUCT INFO
    ======================================== */
 
 .product-info {
     display: flex;
     align-items: center;
     padding: 20px;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap;
 }
 
 .product-image {
     width: 15%;
-    min-width: 100px; /* Minimum size */
+    min-width: 100px;
     height: auto;
 }
 
@@ -180,7 +269,7 @@ header {
 }
 
 /* ========================================
-   BRANDS SECTION - RESPONSIVE
+   BRANDS SECTION
    ======================================== */
 
 .brands {
@@ -208,7 +297,7 @@ header {
 }
 
 /* ========================================
-   SERVICES SECTION - RESPONSIVE
+   SERVICES SECTION
    ======================================== */
 
 .services {
@@ -245,53 +334,169 @@ header {
 }
 
 /* ========================================
-   LOGIN & EXTRA LINKS
+   FORMS & CONTAINERS
    ======================================== */
 
-.login-btn:hover {
-    background-color: #4a20b3;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.create-account {
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #bbbbbb;
-    user-select: none;
+.form-container {
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
-.extra-links p {
-    font-size: 12px;
-    text-align: center;
-    margin: 5px 0;
-    color: #bbbbbb;
+.form-group {
+    margin-bottom: 20px;
 }
 
-.extra-links a {
-    color: #632ee6;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #fff;
 }
 
-.extra-links a:hover {
-    text-decoration: underline;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6e22dd;
 }
 
 /* ========================================
-   RESPONSIVE BREAKPOINTS
+   TABLES
    ======================================== */
 
-/* Tablet - Medium devices (768px and below) */
-@media (max-width: 768px) {
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2a2a;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+table th {
+    background-color: #6e22dd;
+    font-weight: 600;
+    color: white;
+}
+
+table tr:hover {
+    background-color: #333;
+}
+
+/* ========================================
+   CARDS & PANELS
+   ======================================== */
+
+.card {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #6e22dd;
+}
+
+.panel {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px 0;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #6e22dd;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #5a1fb8;
+}
+
+.btn-secondary {
+    background-color: #444;
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 768px and below
+   ======================================== */
+
+@media screen and (max-width: 768px) {
     
-    /* Header adjustments */
+    /* ========================================
+       HEADER - MOBILE
+       ======================================== */
+    
+    header {
+        padding: 10px;
+    }
+    
     .navbar {
         flex-wrap: wrap;
     }
     
+    .logo img {
+        height: 32px;
+    }
+    
     .nav-links {
-        display: none; /* Hide by default on mobile */
+        display: none;
         flex-direction: column;
         width: 100%;
         gap: 15px;
@@ -302,15 +507,15 @@ header {
     }
     
     .nav-links.active {
-        display: flex; /* Show when menu is active */
+        display: flex;
     }
     
     .nav-links a {
         font-size: 16px;
         padding: 10px 20px;
+        text-align: center;
     }
     
-    /* Show mobile menu toggle */
     .menu-toggle {
         display: flex;
         order: 2;
@@ -325,57 +530,219 @@ header {
         margin-left: auto;
     }
     
-    /* Promo banner adjustments */
-    .promo-text h1 {
-        font-size: 32px;
+    .profile-icon img {
+        width: 32px;
+        height: 32px;
     }
+    
+    /* ========================================
+       HERO BANNER - MOBILE
+       ======================================== */
+    
+    .hero-banner {
+        min-height: 500px;
+        height: auto;
+    }
+    
+    .hero-content-wrapper {
+        padding: 20px;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    .hero-text h1 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .cta-button {
+        padding: 15px 35px;
+        font-size: 16px;
+    }
+    
+    .hero-dragon {
+        max-width: 100%;
+        order: -1;
+    }
+    
+    .hero-dragon img {
+        max-width: 300px;
+    }
+    
+    /* ========================================
+       PROMO BANNER - MOBILE
+       ======================================== */
     
     .promo-banner {
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
     
-    /* Product info adjustments */
+    .promo-text h1 {
+        font-size: 32px;
+    }
+    
+    .promo-image {
+        margin-top: 20px;
+    }
+    
+    /* ========================================
+       PRODUCT INFO - MOBILE
+       ======================================== */
+    
     .product-info {
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
     
     .product-image {
-        width: 50%;
+        width: 60%;
         margin-bottom: 15px;
+        max-width: 200px;
     }
     
     .product-details {
         margin-left: 0;
+        width: 100%;
     }
     
-    /* Brands adjustments */
+    .build-now-button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    /* ========================================
+       BRANDS - MOBILE
+       ======================================== */
+    
+    .brands {
+        padding: 15px;
+    }
+    
     .brands h2 {
         font-size: 24px;
     }
     
-    .brand-logos img {
-        width: 80px;
+    .brand-logos {
+        gap: 10px;
     }
     
-    /* Services adjustments */
+    .brand-logos img {
+        width: 70px;
+    }
+    
+    /* ========================================
+       SERVICES - MOBILE
+       ======================================== */
+    
+    .services {
+        padding: 15px;
+    }
+    
     .services h2 {
         font-size: 24px;
+    }
+    
+    .services-list {
+        flex-direction: column;
+        gap: 10px;
     }
     
     .services-list a {
         font-size: 16px;
         padding: 12px 20px;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    /* ========================================
+       FORMS - MOBILE
+       ======================================== */
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .form-container {
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 16px; /* Prevent iOS zoom */
+    }
+    
+    /* ========================================
+       TABLES - MOBILE
+       ======================================== */
+    
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    table {
+        min-width: 600px;
+    }
+    
+    table th,
+    table td {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+    
+    /* ========================================
+       CARDS - MOBILE
+       ======================================== */
+    
+    .card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .panel {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    /* ========================================
+       BUTTONS - MOBILE
+       ======================================== */
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
     }
 }
 
-/* Mobile - Small devices (480px and below) */
-@media (max-width: 480px) {
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 480px and below (Small phones)
+   ======================================== */
+
+@media screen and (max-width: 480px) {
     
     /* Header */
     header {
-        padding: 8px 10px;
+        padding: 8px;
     }
     
     .logo img {
@@ -387,29 +754,43 @@ header {
         height: 30px;
     }
     
-    /* Promo text */
+    /* Hero Banner */
+    .hero-text h1 {
+        font-size: 32px;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 16px;
+    }
+    
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 14px;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .hero-dragon img {
+        max-width: 250px;
+    }
+    
+    /* Promo */
     .promo-text h1 {
         font-size: 24px;
     }
     
-    /* Product details */
+    /* Product */
+    .product-image {
+        width: 70%;
+        max-width: 180px;
+    }
+    
     .old-price {
         font-size: 14px;
     }
     
     .new-price {
         font-size: 18px;
-    }
-    
-    .build-now-button {
-        font-size: 14px;
-        padding: 10px 20px;
-        width: 100%; /* Full width on mobile */
-    }
-    
-    /* Product image */
-    .product-image {
-        width: 70%;
     }
     
     /* Brands */
@@ -429,24 +810,38 @@ header {
     .services-list a {
         font-size: 14px;
         padding: 10px 15px;
-        width: calc(100% - 40px); /* Almost full width */
     }
     
-    /* General padding adjustments */
-    .promo-banner,
-    .product-info,
-    .brands,
-    .services {
+    /* Forms */
+    .form-container {
         padding: 15px 10px;
+    }
+    
+    /* Tables */
+    table th,
+    table td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+    
+    /* Cards */
+    .card {
+        padding: 12px;
+    }
+    
+    .panel {
+        padding: 12px;
     }
 }
 
-/* Very small devices (360px and below) */
-@media (max-width: 360px) {
-    .promo-text h1 {
-        font-size: 20px;
-    }
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   Target: 360px and below (Very small phones)
+   ======================================== */
+
+@media screen and (max-width: 360px) {
     
+    /* Header */
     .logo img {
         height: 24px;
     }
@@ -456,8 +851,110 @@ header {
         height: 28px;
     }
     
+    /* Hero */
+    .hero-text h1 {
+        font-size: 28px;
+    }
+    
+    .hero-text .subtitle {
+        font-size: 14px;
+    }
+    
+    .hero-dragon img {
+        max-width: 220px;
+    }
+    
+    /* Promo */
+    .promo-text h1 {
+        font-size: 20px;
+    }
+    
+    /* Services */
     .services-list a {
         font-size: 12px;
         padding: 8px 12px;
+    }
+    
+    /* Brands */
+    .brand-logos img {
+        width: 50px;
+    }
+}
+
+/* ========================================
+   MOBILE TOUCH OPTIMIZATIONS
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+    
+    /* Larger touch targets */
+    a, button, input, select, textarea {
+        min-height: 44px;
+    }
+    
+    /* Smooth scrolling on mobile */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevent text size adjustment */
+    body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    /* Better tap highlighting */
+    a, button {
+        -webkit-tap-highlight-color: rgba(110, 34, 221, 0.3);
+    }
+}
+
+/* ========================================
+   LANDSCAPE MODE OPTIMIZATIONS
+   ======================================== */
+
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    
+    .hero-banner {
+        min-height: 400px;
+    }
+    
+    .hero-text h1 {
+        font-size: 36px;
+    }
+    
+    .hero-dragon img {
+        max-width: 250px;
+    }
+}
+
+/* ========================================
+   ANIMATIONS (Mobile Safe)
+   ======================================== */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes gridMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(50px, 50px);
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }
