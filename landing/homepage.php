@@ -584,77 +584,246 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 56px;
-            }
+        /* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
 
-            .hero-title .highlight {
-                font-size: 64px;
-            }
+@media screen and (max-width: 768px) {
+    
+    /* Hero Banner */
+    .hero-banner {
+        min-height: 600px;
+    }
 
-            .section-title {
-                font-size: 38px;
-            }
-        }
+    .hero-content-wrapper {
+        padding: 40px 30px;
+    }
 
-        @media (max-width: 768px) {
-            .hero-banner {
-                min-height: 600px;
-            }
+    .hero-title {
+        font-size: 40px;
+    }
 
-            .hero-content-wrapper {
-                padding: 40px 30px;
-            }
+    .hero-title .highlight {
+        font-size: 48px;
+    }
 
-            .hero-title {
-                font-size: 40px;
-            }
+    .hero-description {
+        font-size: 16px;
+    }
 
-            .hero-title .highlight {
-                font-size: 48px;
-            }
+    .hero-buttons {
+        flex-direction: column;
+    }
 
-            .hero-description {
-                font-size: 16px;
-            }
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+    }
+    
+    /* ===== PROMO SECTION - ENHANCED ===== */
+    .promo-container {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .promo-banner {
+        padding: 30px 20px !important;
+        border-radius: 20px !important;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .promo-banner::before {
+        width: 300px;
+        height: 300px;
+        top: -30%;
+        right: -20%;
+    }
+    
+    .promo-content {
+        width: 100%;
+    }
+    
+    .promo-tag {
+        font-size: 10px !important;
+        padding: 6px 15px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .promo-title {
+        font-size: 26px !important;
+        margin-bottom: 10px !important;
+        line-height: 1.2;
+    }
+    
+    .promo-category {
+        font-size: 14px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .promo-prices {
+        flex-direction: column;
+        gap: 10px !important;
+        margin-bottom: 25px !important;
+        align-items: center;
+    }
+    
+    .promo-old-price {
+        font-size: 18px !important;
+    }
+    
+    .promo-new-price {
+        font-size: 34px !important;
+    }
+    
+    .promo-discount {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+    }
+    
+    .no-promo {
+        padding: 60px 20px !important;
+    }
+    
+    .no-promo h3 {
+        font-size: 24px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .no-promo p {
+        font-size: 14px !important;
+    }
+    
+    /* Features & Brands */
+    .section-title {
+        font-size: 32px;
+    }
 
-            .hero-buttons {
-                flex-direction: column;
-            }
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
 
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                text-align: center;
-            }
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+}
 
-            .promo-banner {
-                padding: 40px 30px;
-                flex-direction: column;
-                text-align: center;
-            }
+/* SMALL MOBILE - 480px and below */
+@media screen and (max-width: 480px) {
+    
+    /* Hero */
+    .hero-banner {
+        min-height: 500px;
+    }
+    
+    .hero-content-wrapper {
+        padding: 30px 20px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-title .highlight {
+        font-size: 38px;
+    }
+    
+    .hero-description {
+        font-size: 14px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 15px 35px;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    
+    /* Promo Section */
+    .promo-container {
+        padding: 0 10px;
+    }
+    
+    .promo-banner {
+        padding: 25px 15px !important;
+        border-radius: 15px !important;
+    }
+    
+    .promo-title {
+        font-size: 22px !important;
+    }
+    
+    .promo-category {
+        font-size: 12px !important;
+    }
+    
+    .promo-old-price {
+        font-size: 16px !important;
+    }
+    
+    .promo-new-price {
+        font-size: 30px !important;
+    }
+    
+    .promo-discount {
+        font-size: 12px !important;
+        padding: 5px 10px !important;
+    }
+    
+    .no-promo {
+        padding: 40px 15px !important;
+    }
+    
+    .no-promo h3 {
+        font-size: 20px !important;
+    }
+    
+    .no-promo p {
+        font-size: 13px !important;
+    }
+    
+    /* Features */
+    .section-title {
+        font-size: 26px;
+    }
+    
+    .brand-grid {
+        gap: 10px;
+    }
+}
 
-            .promo-title {
-                font-size: 28px;
-            }
-
-            .promo-new-price {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .brand-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .services-container {
-                grid-template-columns: 1fr;
-            }
-        }
+/* EXTRA SMALL MOBILE - 360px and below */
+@media screen and (max-width: 360px) {
+    
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .hero-title .highlight {
+        font-size: 34px;
+    }
+    
+    .promo-banner {
+        padding: 20px 12px !important;
+    }
+    
+    .promo-title {
+        font-size: 20px !important;
+    }
+    
+    .promo-new-price {
+        font-size: 28px !important;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
     </style>
 </head>
 <body>
