@@ -473,6 +473,49 @@ table tr:hover {
 }
 
 /* ========================================
+   NAVBAR ALIGNMENT FIX - DESKTOP ONLY
+   Force proper 3-column layout
+   Logo (Left) | Nav (Center) | Icons (Right)
+   ======================================== */
+
+@media screen and (min-width: 769px) {
+    .navbar {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+
+    .navbar .logo {
+        flex: 0 0 auto !important;
+        order: 1 !important;
+    }
+
+    .navbar .nav-links {
+        flex: 1 !important;
+        display: flex !important;
+        gap: 35px !important;
+        justify-content: center !important;
+        align-items: center !important;
+        order: 2 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .navbar .profile-icon {
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        order: 3 !important;
+        margin-left: 0 !important;
+    }
+}
+
+
+/* ========================================
    MOBILE RESPONSIVE STYLES
    Target: 768px and below
    ======================================== */
