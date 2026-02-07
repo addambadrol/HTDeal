@@ -31,7 +31,7 @@ session_destroy();
     flex-direction: column;
   }
 
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -74,7 +74,7 @@ session_destroy();
     height: 35px;
     cursor: pointer;
     margin-left: 20px;
-  }
+  } */
 
   .logout-container {
     flex: 1;
