@@ -351,11 +351,11 @@ header {
     </div>
     
     <nav class="sidebar-menu">
-        <a href="homepage.php">🏠 HOME</a>
-        <a href="buildservices.php">🔧 BUILD & SERVICES</a>
-        <a href="review.php">⭐ REVIEW</a>
-        <a href="about.php">ℹ️ ABOUT</a>
-        <a href="profile.php">👤 LOGIN / SIGN UP</a>
+        <a href="homepage.php">HOME</a>
+        <a href="buildservices.php">BUILD & SERVICES</a>
+        <a href="review.php">REVIEW</a>
+        <a href="about.php">ABOUT</a>
+        <a href="profile.php">LOGIN / SIGN UP</a>
     </nav>
     
     <div class="sidebar-footer">
