@@ -101,7 +101,7 @@ try {
         .nav-links {
             display: flex;
             gap: 25px;
-            margin-left: auto;
+            /* margin-left: auto; */
         }
 
         .nav-links a {
