@@ -70,7 +70,7 @@ foreach ($allCategories as $cat => $emoji) {
   }
   
   /* Navbar */
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -113,7 +113,7 @@ foreach ($allCategories as $cat => $emoji) {
     height: 35px;
     cursor: pointer;
     margin-left: 20px;
-  }
+  } */
   
   /* Page Header */
   /* Page Header */
