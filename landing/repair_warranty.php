@@ -42,7 +42,7 @@ require_once '../db_config.php';
     flex-direction: column;
   }
 
-  header {
+  /* header {
     background-color: #6e22dd;
     padding: 10px 20px;
     display: flex;
@@ -85,7 +85,7 @@ require_once '../db_config.php';
     height: 35px;
     cursor: pointer;
     margin-left: 20px;
-  }
+  } */
 
   .page-container {
     max-width: 900px;
@@ -866,7 +866,7 @@ require_once '../db_config.php';
         .catch(error => {
           console.error('Error:', error);
           document.getElementById('invoiceList').innerHTML = 
-            '<div class="empty-state"><div class="empty-state-icon"></div><h3>Error Loading Invoices</h3><p>Please try again later.</p></div>';
+            '<div class="empty-state"><div class="empty-state-icon"></div><h3>No Invoice Found</h3><p>Please try again later.</p></div>';
         });
     }
 
