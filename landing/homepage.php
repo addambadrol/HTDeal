@@ -111,19 +111,57 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 30px;
-            text-shadow: 0 0 30px rgba(110, 34, 221, 0.8);
             text-transform: uppercase;
             letter-spacing: -2px;
         }
 
+        .hero-title .normal-text {
+            display: block;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
         .hero-title .highlight {
-            background: linear-gradient(135deg, #8b4dff 0%, #6e22dd 100%);
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 25%, #e0aaff 50%, #c77dff 75%, #9d4edd 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: block;
-            font-size: 85px;
-            filter: drop-shadow(0 0 20px rgba(139, 77, 255, 0.8));
+            font-size: 100px;
+            filter: drop-shadow(0 0 40px rgba(157, 78, 221, 1))
+                    drop-shadow(0 0 60px rgba(199, 125, 255, 0.9))
+                    drop-shadow(0 0 80px rgba(224, 170, 255, 0.7));
+            animation: pulseGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .hero-title .highlight::before {
+            content: 'WITH TASTE';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #9d4edd 0%, #c77dff 25%, #e0aaff 50%, #c77dff 75%, #9d4edd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 40px rgba(157, 78, 221, 1))
+                        drop-shadow(0 0 60px rgba(199, 125, 255, 0.9))
+                        drop-shadow(0 0 80px rgba(224, 170, 255, 0.7));
+            }
+            50% {
+                filter: drop-shadow(0 0 60px rgba(157, 78, 221, 1.2))
+                        drop-shadow(0 0 90px rgba(199, 125, 255, 1))
+                        drop-shadow(0 0 120px rgba(224, 170, 255, 0.9));
+            }
         }
 
         .hero-description {
@@ -603,8 +641,13 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         font-size: 40px;
     }
 
+    .hero-title .normal-text {
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
     .hero-title .highlight {
-        font-size: 48px;
+        font-size: 60px;
     }
 
     .hero-description {
@@ -727,8 +770,13 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         font-size: 32px;
     }
     
+    .hero-title .normal-text {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+    
     .hero-title .highlight {
-        font-size: 38px;
+        font-size: 48px;
     }
     
     .hero-description {
@@ -802,8 +850,13 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         font-size: 28px;
     }
     
+    .hero-title .normal-text {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
     .hero-title .highlight {
-        font-size: 34px;
+        font-size: 42px;
     }
     
     .promo-banner {
@@ -834,7 +887,7 @@ if ($promoItem && $promoItem['selling_price'] > 0) {
         <div class="hero-content-wrapper">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    BUILD MACHINE
+                    <span class="normal-text">BUILD MACHINE</span>
                     <span class="highlight">WITH TASTE</span>
                 </h1>
                 <p class="hero-description">
