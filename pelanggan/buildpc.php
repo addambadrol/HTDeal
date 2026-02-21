@@ -614,41 +614,7 @@ else:
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const totalCategories = 9;
-
-  // Lock configurator min-height dengan buka semua details sekejap
-  const configurator = document.querySelector('.configurator');
-  const allDetails = document.querySelectorAll('details');
-
-  // Simpan state asal
-  const originalStates = Array.from(allDetails).map(d => d.open);
-
-  // Buka SEMUA details supaya dapat ukur tinggi penuh
-  allDetails.forEach(d => { d.open = true; });
-
-  // Ukur dan lock min-height
-  // Buka semua details dulu
-allDetails.forEach(d => { d.open = true; });
-
-// Paksa browser render dulu
-requestAnimationFrame(() => {
-  
-  let totalHeight = 0;
-
-  allDetails.forEach(d => {
-    const style = window.getComputedStyle(d);
-    const marginBottom = parseFloat(style.marginBottom);
-    totalHeight += d.offsetHeight + marginBottom;
-  });
-
-  configurator.style.minHeight = totalHeight + 'px';
-
-  // Kembalikan state asal
-  allDetails.forEach((d, i) => { d.open = originalStates[i]; });
-});
-
-  // Kembalikan ke state asal
-  allDetails.forEach((d, i) => { d.open = originalStates[i]; });
+  const totalCategories = 9; // Monitor, Casing, CPU, GPU, Cooler, RAM, Storage, Power Supply, Motherboard
   const nextBtn = document.getElementById('nextBtn');
   
   // Update row numbers display
