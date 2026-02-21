@@ -13,7 +13,7 @@ $current_seller_id = $_SESSION['account_id'];
 try {
     // Get seller's referral stats
     $sellerStmt = $pdo->prepare("
-        SELECT reference_code, total_referrals, total_commission 
+        SELECT reference_code, total_referrals, total_commission, name 
         FROM account 
         WHERE account_id = ?
     ");
