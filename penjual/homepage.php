@@ -13,7 +13,7 @@ $current_seller_id = $_SESSION['account_id'];
 try {
     // Get seller's referral stats
     $sellerStmt = $pdo->prepare("
-        SELECT reference_code, total_referrals, total_commission, name 
+        SELECT reference_code, total_referrals, total_commission, first_name, last_name 
         FROM account 
         WHERE account_id = ?
     ");
@@ -433,8 +433,7 @@ try {
   <?php include 'header.php'; ?>
 
   <div class="page-header">
-    <h1>Welcome Back, <?php echo htmlspecialchars($seller['name']); ?>!</h1>
-
+    <h1>Welcome Back, <?php echo htmlspecialchars($seller['first_name'] . ' ' . $seller['last_name']); ?>!</h1>
     <p>Manage your business operations and track your referrals</p>
   </div>
 
