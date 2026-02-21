@@ -177,6 +177,7 @@ foreach ($allCategories as $cat => $emoji) {
     max-width: 1290px;
     padding: 10px 15px;
     box-sizing: border-box;
+    min-height: var(--configurator-min-height, auto);
   }
   
   /* Category Details */
@@ -615,6 +616,18 @@ else:
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const totalCategories = 9; // Monitor, Casing, CPU, GPU, Cooler, RAM, Storage, Power Supply, Motherboard
+
+  // Lock configurator min-height based on its tallest state (when first category is open)
+  const configurator = document.querySelector('.configurator');
+  function lockConfiguratorHeight() {
+    configurator.style.minHeight = '';
+    const currentHeight = configurator.offsetHeight;
+    configurator.style.minHeight = currentHeight + 'px';
+  }
+  // Jalankan selepas first render (first category terbuka by default)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(lockConfiguratorHeight);
+  });
   const nextBtn = document.getElementById('nextBtn');
   
   // Update row numbers display
