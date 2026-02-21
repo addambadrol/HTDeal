@@ -178,7 +178,7 @@ foreach ($allCategories as $cat => $emoji) {
   padding: 10px 15px;
   box-sizing: border-box;
 
-  min-height: 1600px; /* adjust ikut tinggi penuh bila semua open */
+  min-height: 2000px; /* adjust ikut tinggi penuh bila semua open */
 }
   
   /* Category Details */
