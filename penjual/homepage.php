@@ -433,7 +433,7 @@ try {
   <?php include 'header.php'; ?>
 
   <div class="page-header">
-    <h1>Welcome Back, <?php echo htmlspecialchars($seller['first_name'] . ' ' . $seller['last_name']); ?>!</h1>
+    <h1>Welcome Back, <?php echo htmlspecialchars($seller['first_name'] . ' ' . $seller['last_name']); ?></h1>
     <p>Manage your business operations and track your referrals</p>
   </div>
 
