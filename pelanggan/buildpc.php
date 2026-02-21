@@ -175,7 +175,7 @@ foreach ($allCategories as $cat => $emoji) {
   border-radius: 8px;
   width: 100%;
   max-width: 1290px;
-  min-width: 1000px;
+  min-width: 800px;
   padding: 10px 15px;
   box-sizing: border-box;
 
