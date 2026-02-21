@@ -460,208 +460,14 @@ button:disabled:hover {
     .page-subtitle {
       font-size: 12px;
     }
-
-    .container {
-      padding: 0 10px;
-    }
-
-    .configurator {
-      padding: 8px 8px;
-    }
-
-    /* HIDE TABLE on mobile, show cards instead */
+    
     .options table {
-      display: none;
-    }
-
-    .options {
-      margin-left: 0;
-      margin-top: 8px;
-    }
-
-    /* Mobile card per component */
-    .mobile-card-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding: 5px 0;
-    }
-
-    .mobile-component-card {
-      background: #1a0033;
-      border: 2px solid #5b00a7;
-      border-radius: 10px;
-      padding: 12px 14px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .mobile-component-card.selected {
-      border-color: #6e22dd;
-      background: rgba(110, 34, 221, 0.25);
-    }
-
-    .mobile-component-card.out-of-stock {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .mobile-card-radio {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 2px solid #6e22dd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
       font-size: 11px;
-      font-weight: 700;
-      color: #6e22dd;
-      min-width: 22px;
     }
-
-    .mobile-component-card.selected .mobile-card-radio {
-      background: #6e22dd;
-      color: white;
-    }
-
-    .mobile-card-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .mobile-card-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .mobile-card-meta {
-      font-size: 11px;
-      color: #aaa;
-      margin-top: 2px;
-    }
-
-    .mobile-card-price {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
-      text-align: right;
-    }
-
-    .mobile-card-price .old-price {
-      display: block;
-      font-size: 10px;
-      color: #999;
-      text-decoration: line-through;
-      text-align: right;
-    }
-
-    .mobile-empty {
-      text-align: center;
-      color: #aaa;
-      font-style: italic;
-      font-size: 13px;
-      padding: 12px;
-    }
-
-    /* Sidebar becomes bottom bar on mobile */
-    .sidebar {
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: auto;
-      border-radius: 16px 16px 0 0;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 100;
-      border: none;
-      border-top: 2px solid #6e22dd;
-    }
-
-    .sidebar-text {
-      flex: 1;
-      text-align: left;
-    }
-
-    .total-label {
-      font-size: 10px;
-      margin-bottom: 2px;
-    }
-
-    .total-price {
-      font-size: 22px;
-      margin-bottom: 0;
-    }
-
-    .sidebar-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      min-width: 160px;
-    }
-
-    .sidebar button {
-      margin-bottom: 0;
-      padding: 10px 0;
-      font-size: 12px;
-      width: 100%;
-    }
-
-    /* Add bottom padding so content isn't hidden behind fixed sidebar */
-    body {
-      padding-bottom: 130px;
-    }
-
-    details {
-      margin-bottom: 6px;
-    }
-
-    summary {
-      font-size: 13px;
-      padding: 4px 0;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .page-title {
-      font-size: 20px;
-    }
-
-    .sidebar {
-      flex-direction: column;
-      align-items: stretch;
-      padding: 12px 15px;
-      gap: 8px;
-    }
-
-    .sidebar-text {
-      text-align: center;
-    }
-
-    .sidebar-buttons {
-      flex-direction: row;
-      width: 100%;
-    }
-
-    body {
-      padding-bottom: 160px;
-    }
-
-    .total-price {
-      font-size: 20px;
+    
+    .options table th,
+    .options table td {
+      padding: 6px 4px;
     }
   }
 
@@ -797,14 +603,10 @@ else:
     </div>
 
     <div class="sidebar">
-      <div class="sidebar-text">
-        <div class="total-label">Total Price</div>
-        <div class="total-price" id="totalPrice">RM0.00</div>
-      </div>
-      <div class="sidebar-buttons">
-        <button id="nextBtn" disabled>Continue to Checkout</button>
-        <button id="resetBtn" class="reset">Reset Selection</button>
-      </div>
+      <div class="total-label">Total Price</div>
+      <div class="total-price" id="totalPrice">RM0.00</div>
+      <button id="nextBtn" disabled>Continue to Checkout</button>
+      <button id="resetBtn" class="reset">Reset Selection</button>
     </div>
   </div>
 
@@ -812,123 +614,10 @@ else:
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const totalCategories = 9;
+  const totalCategories = 9; // Monitor, Casing, CPU, GPU, Cooler, RAM, Storage, Power Supply, Motherboard
   const nextBtn = document.getElementById('nextBtn');
-
-  // ── Mobile card generation ──────────────────────────────
-  function buildMobileCards() {
-    document.querySelectorAll('.options').forEach(optionsDiv => {
-      const groupName = optionsDiv.getAttribute('data-group');
-      const table = optionsDiv.querySelector('table');
-      if (!table) return;
-
-      // Build card list
-      const cardList = document.createElement('div');
-      cardList.className = 'mobile-card-list';
-
-      const rows = table.querySelectorAll('tbody tr');
-      if (rows.length === 0 || (rows.length === 1 && rows[0].querySelector('.empty-message'))) {
-        const empty = document.createElement('div');
-        empty.className = 'mobile-empty';
-        empty.textContent = 'No items available in this category';
-        cardList.appendChild(empty);
-      } else {
-        rows.forEach((row, idx) => {
-          if (row.querySelector('.empty-message')) return;
-          const radio = row.querySelector('input[type="radio"]');
-          if (!radio) return;
-
-          const isOOS = row.classList.contains('out-of-stock');
-          const partCode = row.cells[1] ? row.cells[1].textContent.trim() : '';
-          const stock = row.cells[3] ? row.cells[3].textContent.trim() : '';
-          const priceCell = row.cells[4];
-          const hasPromo = row.querySelector('.promo-badge') !== null;
-          const oldPriceEl = priceCell ? priceCell.querySelector('.old-price') : null;
-          const priceSpans = priceCell ? priceCell.querySelectorAll('span') : [];
-          let priceHTML = '';
-          if (hasPromo && oldPriceEl) {
-            const oldP = oldPriceEl.textContent.trim();
-            const newP = priceSpans.length > 1 ? priceSpans[1].textContent.trim() : '';
-            priceHTML = `<span class="old-price">${oldP}</span>${newP}`;
-          } else {
-            priceHTML = priceCell ? priceCell.textContent.trim().replace(/\s+/g,' ') : '';
-          }
-
-          // Part name (without badge text)
-          const nameTd = row.cells[2];
-          let partName = '';
-          if (nameTd) {
-            const clone = nameTd.cloneNode(true);
-            const badge = clone.querySelector('.promo-badge');
-            if (badge) badge.remove();
-            partName = clone.textContent.trim();
-          }
-
-          const card = document.createElement('div');
-          card.className = 'mobile-component-card' + (isOOS ? ' out-of-stock' : '');
-          card.dataset.group = groupName;
-          card.dataset.partId = row.dataset.partId || '';
-
-          card.innerHTML = `
-            <div class="mobile-card-radio">${idx + 1}</div>
-            <div class="mobile-card-info">
-              <div class="mobile-card-name">${partName}${hasPromo ? ' <span class="promo-badge">PROMO</span>' : ''}</div>
-              <div class="mobile-card-meta">${partCode}${isOOS ? ' · <span style="color:#ef4444">Out of Stock</span>' : ' · Stock: ' + stock}</div>
-            </div>
-            <div class="mobile-card-price">${priceHTML}</div>
-          `;
-
-          if (!isOOS) {
-            card.addEventListener('click', function() {
-              // Deselect others in same group
-              document.querySelectorAll(`.mobile-component-card[data-group="${groupName}"]`).forEach(c => {
-                c.classList.remove('selected');
-                c.querySelector('.mobile-card-radio').textContent = c.dataset.idx;
-              });
-              card.classList.add('selected');
-              card.querySelector('.mobile-card-radio').textContent = '✓';
-
-              // Sync with hidden radio
-              radio.checked = true;
-
-              // Also sync desktop table selection
-              const table2 = optionsDiv.querySelector('table');
-              if (table2) {
-                table2.querySelectorAll('tbody tr').forEach(tr => tr.classList.remove('selected'));
-                row.classList.add('selected');
-                const numSpan = row.querySelector('.row-number');
-                if (numSpan) numSpan.textContent = '✓';
-              }
-
-              updateTotalUI();
-              validateAllSelections();
-
-              // Auto open next category
-              const currentDetails = optionsDiv.closest('details');
-              setTimeout(() => {
-                currentDetails.open = false;
-                const allDetails = Array.from(document.querySelectorAll('details'));
-                const idx2 = allDetails.indexOf(currentDetails);
-                if (idx2 >= 0 && idx2 < allDetails.length - 1) {
-                  allDetails[idx2 + 1].open = true;
-                  allDetails[idx2 + 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-              }, 300);
-            });
-          }
-
-          card.dataset.idx = idx + 1;
-          cardList.appendChild(card);
-        });
-      }
-
-      optionsDiv.appendChild(cardList);
-    });
-  }
-
-  buildMobileCards();
-
-  // Update row numbers display (desktop)
+  
+  // Update row numbers display
   document.querySelectorAll('.options table').forEach(table => {
     table.querySelectorAll('tbody tr').forEach((row, index) => {
       const rowNumberSpan = row.querySelector('.row-number');
@@ -1042,13 +731,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const trRadio = tr.querySelector('input[type="radio"]');
         if (trRadio) trRadio.checked = false;
       });
-    });
-
-    // Clear mobile cards
-    document.querySelectorAll('.mobile-component-card').forEach(card => {
-      card.classList.remove('selected');
-      const radio2 = card.querySelector('.mobile-card-radio');
-      if (radio2) radio2.textContent = card.dataset.idx || '';
     });
     
     // Close all categories except first
