@@ -627,7 +627,25 @@ document.addEventListener('DOMContentLoaded', function() {
   allDetails.forEach(d => { d.open = true; });
 
   // Ukur dan lock min-height
-  configurator.style.minHeight = configurator.scrollHeight + 'px';
+  // Buka semua details dulu
+allDetails.forEach(d => { d.open = true; });
+
+// Paksa browser render dulu
+requestAnimationFrame(() => {
+  
+  let totalHeight = 0;
+
+  allDetails.forEach(d => {
+    const style = window.getComputedStyle(d);
+    const marginBottom = parseFloat(style.marginBottom);
+    totalHeight += d.offsetHeight + marginBottom;
+  });
+
+  configurator.style.minHeight = totalHeight + 'px';
+
+  // Kembalikan state asal
+  allDetails.forEach((d, i) => { d.open = originalStates[i]; });
+});
 
   // Kembalikan ke state asal
   allDetails.forEach((d, i) => { d.open = originalStates[i]; });
