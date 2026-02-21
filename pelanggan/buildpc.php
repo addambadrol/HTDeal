@@ -177,7 +177,6 @@ foreach ($allCategories as $cat => $emoji) {
     max-width: 1290px;
     padding: 10px 15px;
     box-sizing: border-box;
-    min-height: var(--configurator-min-height, auto);
   }
   
   /* Category Details */
@@ -615,19 +614,23 @@ else:
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const totalCategories = 9; // Monitor, Casing, CPU, GPU, Cooler, RAM, Storage, Power Supply, Motherboard
+  const totalCategories = 9;
 
-  // Lock configurator min-height based on its tallest state (when first category is open)
+  // Lock configurator min-height dengan buka semua details sekejap
   const configurator = document.querySelector('.configurator');
-  function lockConfiguratorHeight() {
-    configurator.style.minHeight = '';
-    const currentHeight = configurator.offsetHeight;
-    configurator.style.minHeight = currentHeight + 'px';
-  }
-  // Jalankan selepas first render (first category terbuka by default)
-  requestAnimationFrame(() => {
-    requestAnimationFrame(lockConfiguratorHeight);
-  });
+  const allDetails = document.querySelectorAll('details');
+
+  // Simpan state asal
+  const originalStates = Array.from(allDetails).map(d => d.open);
+
+  // Buka SEMUA details supaya dapat ukur tinggi penuh
+  allDetails.forEach(d => { d.open = true; });
+
+  // Ukur dan lock min-height
+  configurator.style.minHeight = configurator.scrollHeight + 'px';
+
+  // Kembalikan ke state asal
+  allDetails.forEach((d, i) => { d.open = originalStates[i]; });
   const nextBtn = document.getElementById('nextBtn');
   
   // Update row numbers display
