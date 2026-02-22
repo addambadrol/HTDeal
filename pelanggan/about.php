@@ -404,10 +404,15 @@ require_once '../db_config.php';
 <body onload="initMap()">
 <?php include 'header.php'; ?>
 
-<section class="hero-section">
-  <div class="hero-content">
-    <h1>About Us</h1><br>
-    <p>
+<section class="about-section">
+    <div class="about-wrapper">
+        <div class="about-left">
+            <h1>About<br>Us</h1>
+            <div class="underline"></div>
+        </div>
+
+        <div class="about-right">
+            <p>
       HTDeal is an appointment-based platform for buying and selling computer equipment.
       We help buyers and sellers meet safely through verified booking and two-way reviews.
     </p>
