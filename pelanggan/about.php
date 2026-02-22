@@ -18,7 +18,7 @@ require_once '../db_config.php';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
   }
 
   body {
@@ -223,7 +223,7 @@ require_once '../db_config.php';
   /* Contact card specific styles */
   .contact-item {
     margin-bottom: 20px;
-    padding-left: 15px;
+    padding-left: 0;
     /* border-left: 3px solid rgba(157,123,255,0.3); */
     transition: all 0.3s;
   }
@@ -314,16 +314,6 @@ require_once '../db_config.php';
   #map_canvas {
     width: 100%;
     height: 100%;
-  }
-
-  footer {
-    text-align: center;
-    padding: 30px 20px;
-    background-color: #0a0a0a;
-    font-size: 12px;
-    color: #666;
-    margin-top: auto;
-    border-top: 1px solid rgba(110, 34, 221, 0.2);
   }
 
   /* RESPONSIVE */
