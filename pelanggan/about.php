@@ -406,7 +406,7 @@ require_once '../db_config.php';
 
 <section class="hero-section">
   <div class="hero-content">
-    <h1>About Us</h1>
+    <h1>About Us</h1><<br>
     <p>
       HTDeal is an appointment-based platform for buying and selling computer equipment.
       We help buyers and sellers meet safely through verified booking and two-way reviews.
