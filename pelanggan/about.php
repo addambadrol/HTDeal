@@ -366,50 +366,6 @@ require_once '../db_config.php';
       padding: 60px 25px;
     }
   }
-
-  .about-section {
-    min-height: 100vh;
-    background: radial-gradient(circle at 20% 20%, #2b1b55, #0c0520 70%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 40px;
-}
-
-.about-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 80px;
-    max-width: 1200px;
-    width: 100%;
-}
-
-.about-left h1 {
-    font-size: 80px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #a855f7, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.underline {
-    width: 120px;
-    height: 3px;
-    margin-top: 20px;
-    background: linear-gradient(90deg, #a855f7, #6366f1);
-    border-radius: 5px;
-}
-
-.about-right {
-    max-width: 600px;
-}
-
-.about-right p {
-    font-size: 20px;
-    color: #d1d5db;
-    line-height: 1.8;
-}
   </style>
 
   <script>
@@ -448,15 +404,10 @@ require_once '../db_config.php';
 <body onload="initMap()">
 <?php include 'header.php'; ?>
 
-<section class="about-section">
-    <div class="about-wrapper">
-        <div class="about-left">
-            <h1>About<br>Us</h1>
-            <div class="underline"></div>
-        </div>
-
-        <div class="about-right">
-            <p>
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>About Us</h1>
+    <p>
       HTDeal is an appointment-based platform for buying and selling computer equipment.
       We help buyers and sellers meet safely through verified booking and two-way reviews.
     </p>
